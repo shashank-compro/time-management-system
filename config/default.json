@@ -1,0 +1,10 @@
+{
+    "app": {
+        "port": 3000
+    },
+    "mongo":{
+        "user": "dbUser1",
+        "password": "dbpassword1",
+        "database": "test"
+    }
+}

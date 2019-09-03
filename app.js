@@ -1,0 +1,17 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const config = require('./config/default');
+const DataLayerFactory = require('./datalayer/DataLayerFactory');
+const routes = require('./config/routes');
+
+const app = express();
+app.use(bodyParser.json({limit: '1mb'}));
+
+app.use('/api/v1', routes);
+
+DataLayerFactory.initMongoDataLayer().then(() => {
+    console.log(`API Server listening on port ${config.app.port}`);
+    app.listen(config.app.port);
+});
+
+module.exports = app;
