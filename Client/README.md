@@ -4,13 +4,13 @@
 ```bash
         --app-component
         --login
-		--dashboard
-				--content-page-wrapper
-							--leaves
-							--timeentry
-				--navigation-left
-				--navigation-top
-		--page-not-found
+	--dashboard
+		--content-page-wrapper
+		  --leaves
+		  --timeentry
+		--navigation-left
+		--navigation-top
+	--page-not-found
 ```
 	       
 				
