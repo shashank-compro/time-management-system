@@ -29,6 +29,6 @@
 -  All comon services are to be accessed/saved to common service folder
 	Path:- src\app\service
 
-
-
+## - FontAwesome Guideline 
+-  https://github.com/FortAwesome/angular-fontawesome
 
