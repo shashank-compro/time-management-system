@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LoginPageComponent } from '../app/login-page/login-page.component';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +8,4 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppComponent {
   title = 'Time-Management-System';
-  faCoffee = faCoffee;
 }
