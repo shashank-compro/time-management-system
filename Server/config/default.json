@@ -5,6 +5,6 @@
     "mongo":{
         "user": "dbUser1",
         "password": "dbpassword1",
-        "database": "test"
+        "database": "TMS"
     }
 }
