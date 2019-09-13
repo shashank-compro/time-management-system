@@ -5,6 +5,11 @@
     "mongo":{
         "user": "dbUser1",
         "password": "dbpassword1",
-        "database": "TMS"
+        "database": "TMS",
+        "cluster1": "cluster0-shard-00-00-jt05i.mongodb.net",
+        "cluster2": "cluster0-shard-00-01-jt05i.mongodb.net",
+        "cluster3": "cluster0-shard-00-00-jt05i.mongodb.net",
+        "port": 27017,
+        "query": "ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
     }
 }

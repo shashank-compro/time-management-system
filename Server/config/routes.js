@@ -1,14 +1,30 @@
 "use strict";
 
 const router = require('express').Router();
-const statusController = require('../controllers/statusController');
-const leavesController = require('../controllers/leavesController');
+const statusController = require('../controllers/status.controller');
+const leavesController = require('../controllers/leave.controller');
+const timeEntriesController = require('../controllers/time-entry.controller');
+const authController = require('../controllers/auth.controller');
 
-// Define the api routes
+// api routes
 router.get('/status', statusController.checkStatus);
+
+// auth api routes
+router.post('/users/register' , authController.createUser);
+router.post('/users/login', authController.login);
+router.get('/users/:_id', authController.getUsersByUserId);
+router.put('/users/:_id', authController.updateUserById);
+router.delete('/users/:_id' , authController.deleteUserById);
+
+//timeentry api routes
+router.get('/timeentries', timeEntriesController.getTimeEntriesByUserId);
+router.post('/timeentries', timeEntriesController.createTimeEntry);
+router.put('/timeentries/:timeEntryId', timeEntriesController.updateTimeEntryById);
+
+//Leave api routes
 router.get('/leaves', leavesController.getLeavesByUserId);
-router.post('/leaves', leavesController.addLeaves);
-router.put('/leaves/:leaveId', leavesController.editLeave);
-router.delete('/leaves/:leaveId', leavesController.deleteLeave);
+router.post('/leaves', leavesController.createLeave);
+router.put('/leaves/:leaveId', leavesController.updateLeaveById);
+router.delete('/leaves/:leaveId', leavesController.deleteLeaveById);
 
 module.exports = router;

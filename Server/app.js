@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('./config/default');
-const DataLayerFactory = require('./datalayer/DataLayerFactory');
+const DataLayerFactory = require('./datalayer/factory.datalayer');
 const routes = require('./config/routes');
 
 const app = express();
