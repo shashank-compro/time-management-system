@@ -4,17 +4,18 @@ const router = require('express').Router();
 const statusController = require('../controllers/status.controller');
 const leavesController = require('../controllers/leave.controller');
 const timeEntriesController = require('../controllers/time-entry.controller');
+const userController = require('../controllers/user.controller');
 const authController = require('../controllers/auth.controller');
 
 // api routes
 router.get('/status', statusController.checkStatus);
 
 // auth api routes
-router.post('/users/register' , authController.createUser);
+router.post('/users/register' , userController.createUser);
 router.post('/users/login', authController.login);
-router.get('/users/:_id', authController.getUsersByUserId);
-router.put('/users/:_id', authController.updateUserById);
-router.delete('/users/:_id' , authController.deleteUserById);
+router.get('/users/:_id', userController.getUsersByUserId);
+router.put('/users/:_id', userController.updateUserById);
+router.delete('/users/:_id' , userController.deleteUserById);
 
 //timeentry api routes
 router.get('/timeentries', timeEntriesController.getTimeEntriesByUserId);
