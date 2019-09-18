@@ -25,30 +25,31 @@ class timeEntriesController {
         try {
             timeEntries = await dataLayer.getTimeEntriesByUserId(obj);
         } catch (e) {
-            res.status(400).send({
-                errorCode: e.errorCode,
-                dbMessage: e.dbMessage
-            });
+            return res
+                .status(400)
+                .send({ "status": "error", "message": `Failed to get time entries for user: ${obj.userId}` });
         }
 
-        res.status(200).json(timeEntries);
+        res.status(200)
+            .json(timeEntries);
 
     }
 
     //POST
 
     static async createTimeEntry(req, res) {
-        let entry;
-        var dateAndTimeObj = {
+
+        let newEntry;
+        const dateAndTimeObj = {
             date: req.body.date,
             timeIn: req.body.timeIn,
             timeOut: req.body.timeOut
         }
         //Formatting of date and time
-        let ISODateAndTimeObj = timeEntriesController.toISOFormat(dateAndTimeObj);
+        const ISODateAndTimeObj = timeEntriesController.toISOFormat(dateAndTimeObj);
 
-        let newTimeEntry = new timeEntryModel({
-            userId: mongoose.Types.ObjectId(req.body.userId), //need to check token from login page
+        const newTimeEntry = new timeEntryModel({
+            userId: mongoose.Types.ObjectId(req.body.userId),
             date: ISODateAndTimeObj.date,
             timeIn: ISODateAndTimeObj.timeIn,
             timeOut: ISODateAndTimeObj.timeOut,
@@ -56,31 +57,27 @@ class timeEntriesController {
         });
 
         try {
-            entry = await dataLayer.createTimeEntry(newTimeEntry);
-
-            // //save entry ID - WILL BE FETCHED FROM URL IN FUTURE
-            // timeEntriesController.currentEntryID = entry._id;
+            newEntry = await dataLayer.createTimeEntry(newTimeEntry);
         } catch (e) {
-            res.status(400).send({
-                errorCode: e.errorCode,
-                dbMessage: e.dbMessage
-            });
+            return res
+                .status(400)
+                .send({ "status": "error", "message": "Failed to create time entry" });
         }
-        res.status(200).json(entry);
+
+        res.status(200)
+            .json(newEntry);
     }
 
     static toISOFormat(dateAndTimeObj) {
 
         //Set date
-        var dateObj = dateAndTimeObj.date.split('/');
-        let date = moment(new Date(dateObj[0], dateObj[1] - 1, dateObj[2])).format('YYYY-MM-DD');
-        console.log('s', date)
+        const dateObj = dateAndTimeObj.date.split('/');
+        const date = moment(new Date(dateObj[0], dateObj[1] - 1, dateObj[2])).format('YYYY-MM-DD');
 
         //Making ISO standard time stamp
-        let a = date;
-
-        let timeIn = moment(`${a} ${dateAndTimeObj.timeIn}`).toISOString();
-        let timeOut = moment(`${a} ${dateAndTimeObj.timeOut}`).toISOString();
+        const a = date;
+        const timeIn = moment(new Date(`${a} ${dateAndTimeObj.timeIn}`).toISOString())
+        const timeOut = moment(new Date(`${a} ${dateAndTimeObj.timeOut}`).toISOString());
 
         return {
             "date": date,
@@ -94,26 +91,25 @@ class timeEntriesController {
     static async updateTimeEntryById(req, res) {
 
         let updatedTimeEntry;
-        let ISODateAndTimeObj = timeEntriesController.toISOFormat(req.body);
+        const ISODateAndTimeObj = timeEntriesController.toISOFormat(req.body);
 
-        var obj = {
-            userId: mongoose.Types.ObjectId(req.body.userId),
-            date: ISODateAndTimeObj.date,
+        const obj = {
             timeIn: ISODateAndTimeObj.timeIn,
             timeOut: ISODateAndTimeObj.timeOut,
             onLeave: req.body.onLeave,
             entryID: req.params.timeEntryId
         }
+
         try {
             updatedTimeEntry = await dataLayer.updateTimeEntryById(obj);
-
         } catch (e) {
-            res.status(400).send({
-                errorCode: e.errorCode,
-                dbMessage: e.dbMessage
-            });
+           return res
+                .status(400)
+                .send({ "status": "error", "message": "Failed to update time entry" });
         }
-        res.status(200).json(updatedTimeEntry);
+
+        res.status(200)
+            .json(updatedTimeEntry);
     }
 
 }
