@@ -16,5 +16,7 @@
     "mongoose": "^5.6.0",
     "moment": "^2.24.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "cors": "^2.8.5"
+  }
 }
