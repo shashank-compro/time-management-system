@@ -40,20 +40,22 @@ class timeEntriesController {
     static async createTimeEntry(req, res) {
 
         let newEntry;
-        const dateAndTimeObj = {
+        const obj = {
             date: req.body.date,
             timeIn: req.body.timeIn,
-            timeOut: req.body.timeOut
+            timeOut: req.body.timeOut,
+            userId: req.body.userId,
+            onLeave: req.body.onLeave
         }
         //Formatting of date and time
-        const ISODateAndTimeObj = timeEntriesController.toISOFormat(dateAndTimeObj);
+        const ISODateAndTimeObj = timeEntriesController.toISOFormat(obj);
 
         const newTimeEntry = new timeEntryModel({
-            userId: mongoose.Types.ObjectId(req.body.userId),
+            userId: mongoose.Types.ObjectId(obj.userId),
             date: ISODateAndTimeObj.date,
             timeIn: ISODateAndTimeObj.timeIn,
             timeOut: ISODateAndTimeObj.timeOut,
-            onLeave: req.body.onLeave
+            onLeave: obj.onLeave
         });
 
         try {
@@ -91,13 +93,22 @@ class timeEntriesController {
     static async updateTimeEntryById(req, res) {
 
         let updatedTimeEntry;
-        const ISODateAndTimeObj = timeEntriesController.toISOFormat(req.body);
+
+        const objForISOFormat = {
+            date: req.body.date,
+            timeIn: req.body.timeIn,
+            timeOut: req.body.timeOut,
+            onLeave: req.body.onLeave,
+            entryId: req.params.timeEntryId
+        }
+
+        const ISODateAndTimeObj = timeEntriesController.toISOFormat(objForISOFormat);
 
         const obj = {
             timeIn: ISODateAndTimeObj.timeIn,
             timeOut: ISODateAndTimeObj.timeOut,
-            onLeave: req.body.onLeave,
-            entryID: req.params.timeEntryId
+            onLeave: objForISOFormat.onLeave,
+            entryID: objForISOFormat.entryId
         }
 
         try {
