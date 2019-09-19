@@ -10,12 +10,12 @@ class leavesDataLayer {
     }
 
     static createLeave (reqObj) {
-        let {endDate, reason, startDate} = reqObj;
+        let {endDate, reason, startDate, userId} = reqObj;
         const newLeave = new leavesModel({
             startDate: startDate,
             endDate: endDate,
             reason: reason,
-            userId: mongoose.Types.ObjectId(reqObj.userId)
+            userId: mongoose.Types.ObjectId(userId)
         });
         return newLeave.save().catch((err) => {
             throw new Error (`Could not create leave. Error message - ${err.message}`);
