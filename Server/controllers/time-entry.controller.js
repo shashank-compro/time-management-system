@@ -4,10 +4,7 @@
  *
  * @class timeEntriesController
  */
-const mongoose = require('mongoose');
-const timeEntryModel = require('../models/time-entry.model');
 const dataLayer = require('../datalayer/time-entry.datalayer')
-const moment = require('moment');
 
 
 class timeEntriesController {
@@ -18,8 +15,8 @@ class timeEntriesController {
         let timeEntries;
 
         const obj = {
-            "userId": req.query.user,
-            "limit": req.query.limit
+            userId: req.query.user,
+            limit: req.query.limit
         }
 
         try {
@@ -47,19 +44,9 @@ class timeEntriesController {
             userId: req.body.userId,
             onLeave: req.body.onLeave
         }
-        //Formatting of date and time
-        const ISODateAndTimeObj = timeEntriesController.toISOFormat(obj);
-
-        const newTimeEntry = new timeEntryModel({
-            userId: mongoose.Types.ObjectId(obj.userId),
-            date: ISODateAndTimeObj.date,
-            timeIn: ISODateAndTimeObj.timeIn,
-            timeOut: ISODateAndTimeObj.timeOut,
-            onLeave: obj.onLeave
-        });
 
         try {
-            newEntry = await dataLayer.createTimeEntry(newTimeEntry);
+            newEntry = await dataLayer.createTimeEntry(obj);
         } catch (e) {
             return res
                 .status(400)
@@ -70,45 +57,18 @@ class timeEntriesController {
             .json(newEntry);
     }
 
-    static toISOFormat(dateAndTimeObj) {
-
-        //Set date
-        const dateObj = dateAndTimeObj.date.split('/');
-        const date = moment(new Date(dateObj[0], dateObj[1] - 1, dateObj[2])).format('YYYY-MM-DD');
-
-        //Making ISO standard time stamp
-        const a = date;
-        const timeIn = moment(new Date(`${a} ${dateAndTimeObj.timeIn}`).toISOString())
-        const timeOut = moment(new Date(`${a} ${dateAndTimeObj.timeOut}`).toISOString());
-
-        return {
-            "date": date,
-            "timeIn": timeIn,
-            "timeOut": timeOut
-        };
-    }
-
     //PUT
 
     static async updateTimeEntryById(req, res) {
 
         let updatedTimeEntry;
 
-        const objForISOFormat = {
+        const obj = {
             date: req.body.date,
             timeIn: req.body.timeIn,
             timeOut: req.body.timeOut,
             onLeave: req.body.onLeave,
             entryId: req.params.timeEntryId
-        }
-
-        const ISODateAndTimeObj = timeEntriesController.toISOFormat(objForISOFormat);
-
-        const obj = {
-            timeIn: ISODateAndTimeObj.timeIn,
-            timeOut: ISODateAndTimeObj.timeOut,
-            onLeave: objForISOFormat.onLeave,
-            entryID: objForISOFormat.entryId
         }
 
         try {
