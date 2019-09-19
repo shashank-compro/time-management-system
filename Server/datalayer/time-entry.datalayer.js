@@ -33,14 +33,15 @@ class timeEntriesDatalayer {
 
     static createTimeEntry(obj) {
 
-        //Formatting of date and time
-        const ISODateAndTimeObj = timeEntriesDatalayer.toISOFormat(obj);
+       debugger
+        const ISODate = timeEntriesDatalayer.toISODate(obj);
+        const ISOTime = timeEntriesDatalayer.toISOTime(obj, ISODate)
 
         const newTimeEntry = new timeEntryModel({
             userId: mongoose.Types.ObjectId(obj.userId),
-            date: ISODateAndTimeObj.date,
-            timeIn: ISODateAndTimeObj.timeIn,
-            timeOut: ISODateAndTimeObj.timeOut,
+            date: ISODate,
+            timeIn: ISOTime.timeIn,
+            timeOut: ISOTime.timeOut,
             onLeave: obj.onLeave
         });
 
@@ -52,12 +53,13 @@ class timeEntriesDatalayer {
     }
 
     static updateTimeEntryById(obj) {
-
-        const ISODateAndTimeObj = timeEntriesDatalayer.toISOFormat(obj);
+        debugger
+        const ISODate = timeEntriesDatalayer.toISODate(obj);
+        const ISOTime = timeEntriesDatalayer.toISOTime(obj, ISODate);
 
         const entriesToUpdate = {
-            timeIn: ISODateAndTimeObj.timeIn,
-            timeOut: ISODateAndTimeObj.timeOut,
+            timeIn: ISOTime.timeIn,
+            timeOut: ISOTime.timeOut,
             onLeave: obj.onLeave
         };
 
@@ -66,30 +68,26 @@ class timeEntriesDatalayer {
         };
 
         return timeEntryModel
-            .findOneAndUpdate(filter, entriesToUpdate, { new: true })
+            .findByIdAndUpdate(filter, entriesToUpdate, { new: true })
             .exec()
             .catch((err) => {
                 throw new Error('Could not update Time entry');
         });
     }
 
-
-    static toISOFormat(dateAndTimeObj) {
+    static toISODate (obj) {
 
         //Set date
-        const dateObj = dateAndTimeObj.date.split('/');
-        const date = moment(new Date(dateObj[0], dateObj[1] - 1, dateObj[2])).format('YYYY-MM-DD');
+        return moment(obj.date, 'YYYY/MM/DD').toISOString();
+    }
+
+    static toISOTime(obj, date) {
 
         //Making ISO standard time stamp
-        const a = date;
-        const timeIn = moment(new Date(`${a} ${dateAndTimeObj.timeIn}`).toISOString())
-        const timeOut = moment(new Date(`${a} ${dateAndTimeObj.timeOut}`).toISOString());
-
         return {
-            "date": date,
-            "timeIn": timeIn,
-            "timeOut": timeOut
-        };
+            timeIn : moment(new Date(`${date} ${obj.timeIn}`).toISOString()),
+            timeOut : moment(new Date(`${date} ${obj.timeOut}`).toISOString())
+        }
     }
 
 }
