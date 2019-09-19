@@ -14,11 +14,12 @@ class timeEntriesDatalayer {
 
         let param = {
             userId : obj.userId,
-            limit : parseInt(obj.limit)
+            limit : parseInt(obj.limit),
+            sortOrder : obj.sortOrder
         }
-        let sortOrder = {
-            '_id': -1
-        };
+
+         //since sort order is optional
+         let sortOrder = (param.sortOrder == 'asc') ? { '_id': 1 } : { '_id': -1 }
 
         return timeEntryModel
             .find({"userId" : param.userId}, null, {limit: param.limit})

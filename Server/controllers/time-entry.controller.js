@@ -16,7 +16,8 @@ class timeEntriesController {
 
         const obj = {
             userId: req.query.user,
-            limit: req.query.limit
+            limit: req.query.limit,
+            sortOrder: req.query.sort
         }
 
         try {
