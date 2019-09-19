@@ -5,7 +5,7 @@ const DataLayerFactory = require('./datalayer/factory.datalayer');
 const routes = require('./config/routes');
 var cors = require('cors');
 
-const whitelist = ['http://localhost:4200'];
+const whitelist = config.mongo.allowedCORSDomains;
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions;
   if (whitelist.indexOf(req.header('Origin')) !== -1) {
