@@ -62,7 +62,7 @@ class timeEntriesController {
 
     //PUT
 
-    static async updateTimeEntryById(req, res) {
+    static async updateTimeEntryById(req, res) { 
 
         let updatedTimeEntry;
 
