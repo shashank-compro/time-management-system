@@ -9,8 +9,8 @@ class leavesDataLayer {
         });
     }
 
-    static createLeave (reqObj) {
-        let {endDate, reason, startDate, userId} = reqObj;
+    static createLeave (leave) {
+        let {startDate, endDate, reason,  userId} = leave;
         const newLeave = new leavesModel({
             startDate: startDate,
             endDate: endDate,
@@ -22,14 +22,8 @@ class leavesDataLayer {
         });
     }
 
-    static updateLeaveById (leaveId, reqObj) {
-        let {endDate, reason, startDate} = reqObj;
-        let updatedLeave = {
-            startDate: startDate,
-            endDate: endDate,
-            reason: reason
-        };
-        return leavesModel.findByIdAndUpdate(leaveId, updatedLeave).exec().catch((err) => {
+    static updateLeaveById (leaveId, updatedLeave) {
+        return leavesModel.findByIdAndUpdate(leaveId, updatedLeave, {"omitUndefined": true, "new": true}).exec().catch((err) => {
             throw new Error (`Could not update leave. Error message - ${err.message}`);
         });
     }

@@ -9,81 +9,66 @@ class leavesController {
 
     static async getLeavesByUserId (req, res) {
         const userId = req.query.user;
-        if (!userId) {
-            return res.status(400);
+        if (!userId || !userId.match(/^[0-9a-fA-F]{24}$/)) {
+            return res.status(400).send("Bad Request");
         }
         let leaves;
         try {
             leaves = await leavesDataLayer.getLeavesByUserId(userId);
         } catch (err) {
             console.log(err.message);
-            return res.status(500);
+            return res.status(500).send("Internal Server Error");
         }
         return res.status(200).json(leaves);
     }
 
     static async createLeave (req, res) {
-        let createdLeave;
-        let {endDate, reason, startDate, userId} = req.body;
-        if (!endDate || !reason || !startDate || !userId) {
-            return res.status(400);
+        let {startDate, endDate, reason,  userId} = req.body;
+        if (!startDate || !endDate || !reason || !userId) {
+            return res.status(400).send("Bad Request");
         }
-        const newLeave = {
-            "startDate": startDate,
-            "endDate": endDate,
-            "reason": reason,
-            "userId": userId
-        }
+        let newLeave = {startDate, endDate, reason,  userId};
         try {
-            createdLeave = await leavesDataLayer.createLeave(newLeave);
+            newLeave = await leavesDataLayer.createLeave(newLeave);
         } catch(err) {
             console.log(err.message);
-            return res.status(500);
+            return res.status(500).send("Internal Server Error");
         }
-        return res.status(201).json(createdLeave);
+        return res.status(201).json(newLeave);
     }
 
     static async updateLeaveById (req, res) {
-        let updatedLeave;
         const leaveId = req.params.leaveId;
-        if (!leaveId) {
-            return res.status(400);
+        if (!leaveId || !leaveId.match(/^[0-9a-fA-F]{24}$/)) {
+            return res.status(400).send("Bad Request");
         }
-        let {endDate, reason, startDate, userId} = req.body;
-        if (!endDate || !reason || !startDate || !userId) {
-            return res.status(400);
-        }
-        const newLeave = {
-            "startDate": startDate,
-            "endDate": endDate,
-            "reason": reason,
-            "userId": userId
-        }
+        let {startDate, endDate, reason} = req.body;
+        let updatedLeave = {startDate, endDate, reason};
         try {
-            updatedLeave = await leavesDataLayer.updateLeaveById(leaveId, newLeave);
+            updatedLeave = await leavesDataLayer.updateLeaveById(leaveId, updatedLeave);
         } catch(err) {
             console.log(err.message);
-            return res.status(500);
+            return res.status(500).send("Internal Server Error");
         }
         return res.status(200).json(updatedLeave);
     }
 
     static async deleteLeaveById (req, res) {
         const leaveId = req.params.leaveId;
-        if (!leaveId) {
-            return res.status(400);
+        if (!leaveId || !leaveId.match(/^[0-9a-fA-F]{24}$/)) {
+            return res.status(400).send("Bad Request");
         }
         let deletedLeave;
         try {
             deletedLeave = await leavesDataLayer.deleteLeaveById(leaveId);
         } catch(err) {
             console.log(err.message);
-            return res.status(500);
+            return res.status(500).send("Internal Server Error");
         }
         if (!deletedLeave) {
             res.status(500).json(false);
         } else {
-            res.status(400).json(true);
+            res.status(200).json(true);
         }
         
     }
