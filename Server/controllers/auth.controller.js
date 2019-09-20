@@ -14,8 +14,9 @@ class authController {
           if(err) {
               return next(err);
           }
-      
-          if (!user) { return res.json( { message: info.message }) }
+          if (!user) { 
+            return res.json( { message: info.message }) 
+          }
 
           const payload = {
               username: user.username,
@@ -30,10 +31,6 @@ class authController {
       
               /** generate a signed json web token and return it in the response */
               const token = jwt.sign(JSON.stringify(payload), "secretkey");
-              console.log(token);
-
-              // res.cookie('jwt', jwt, { httpOnly: true, secure: true });
-              // res.status(200).send({user});
 
               res.json({token});
       

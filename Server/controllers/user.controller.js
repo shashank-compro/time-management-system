@@ -1,4 +1,3 @@
-const datalayerFactory = require('../datalayer/factory.datalayer');
 const userDataLayer = require('../datalayer/user.datalayer');
 /**
  * Class representing users controller
@@ -8,23 +7,27 @@ const userDataLayer = require('../datalayer/user.datalayer');
 class usersController {
 
   static async createUser (req, res) {
-    let reqObject = req.body;
-        try {
-            await userDataLayer.createUser(reqObject);
-        } catch(err) {
-            res.status(400).send(err.message);
-            return;
-        }
-        res.status(200);
-        res.send("User created successfully");
+    const userObj = {
+      username : req.body.username,
+      email : req.body.email,
+      password : req.body.password,
+      firstname : req.body.firstname,
+      lastname : req.body.lastname
+    }
+    try {
+        await userDataLayer.createUser(userObj);
+    } catch(err) {
+        res.status(400).send(err.message);
+        return;
+    }
+    res.status(200).json({"message" : "User created successfully"});
   }
 
 
-  static async getUsersByUserId (req, res) {
+  static async getUserById (req, res) {
     let userid = req.params._id;
-    let user;
     try {
-      user = await userDataLayer.getUsersByUserId(userid);
+      user = await userDataLayer.getUserById(userid);
     }
     catch(err) {
       res.status(400).send(err.message);
@@ -35,31 +38,35 @@ class usersController {
 
 
   static async updateUserById (req, res) {
-    let reqbody = req.body;
     let userid = req.params._id;
+    const updateUserObj = {
+      username : req.body.username,
+      email : req.body.email,
+      password : req.body.password,
+      firstname : req.body.firstname,
+      lastname : req.body.lastname
+    }
     try {
-      await userDataLayer.updateUserById(userid , reqbody);
+      await userDataLayer.updateUserById(userid , updateUserObj);
     }
     catch(err) {
       res.status(400).send(err.message);
       return;
       }
-    res.status(200).send("User updated successfully");
+    res.status(200).json({"message" : "User updated successfully"});
   }
 
 
   static async deleteUserById (req, res) {
     let userid = req.params.id;
-    let reqbody = req.body;
-
     try {
-      await userDataLayer.deleteUserById(userid , reqbody);
+      await userDataLayer.deleteUserById(userid);
     }
     catch(err) {
       res.status(400).send(err.message);
       return;
     }
-    res.status(200).send("User deleted successfully");
+    res.status(200).json({"message" : "User deleted successfully"});
   }
 }
 
