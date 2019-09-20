@@ -58,8 +58,7 @@ class usersDatalayer {
 
     // Creates hash for a password
     static hashPassword (origPassword) {
-        var salt = bcrypt.genSaltSync(saltRounds);
-        var hashPassword = bcrypt.hashSync(origPassword, salt);
+        var hashPassword = bcrypt.hashSync(origPassword, saltRounds);
         return hashPassword;
     }
 }

@@ -13,7 +13,7 @@ router.get('/status', statusController.checkStatus);
 // auth api routes
 router.post('/users/register' , userController.createUser);
 router.post('/users/login', authController.login);
-router.get('/users/:_id', userController.getUsersByUserId);
+router.get('/users/:_id', userController.getUserById);
 router.put('/users/:_id', userController.updateUserById);
 router.delete('/users/:_id' , userController.deleteUserById);
 
