@@ -12,17 +12,25 @@ class timeEntriesDatalayer {
      */
     static getTimeEntriesByUserId(obj) {
 
-        let param = {
-            userId : obj.userId,
-            limit : parseInt(obj.limit),
-            sortOrder : obj.sortOrder
-        }
+        //if user id not given in URL, send error message
+        if (obj.userId == undefined){
+            throw new Error('No User ID provided');
+        }   
 
-         //since sort order is optional
-         let sortOrder = (param.sortOrder == 'asc') ? { '_id': 1 } : { '_id': -1 }
+        //set default sort order
+        let sortOrder = (obj.sortOrder == 'asc') ? { '_id': 1 } : { '_id': -1 };
+
+        //set default limit
+        let limit = (obj.limit == undefined) ? 1 : obj.limit;
+
+        const params = {
+            userId : obj.userId,
+            limit : parseInt(limit),
+            sortOrder : sortOrder
+        };
 
         return timeEntryModel
-            .find({"userId" : param.userId}, null, {limit: param.limit})
+            .find({"userId" : params.userId}, null, {limit: params.limit})
             .sort(sortOrder)
             .exec()
             .catch((err) => {
@@ -33,9 +41,9 @@ class timeEntriesDatalayer {
 
     static createTimeEntry(obj) {
 
-       debugger
+        //Formatting of date and time
         const ISODate = timeEntriesDatalayer.toISODate(obj);
-        const ISOTime = timeEntriesDatalayer.toISOTime(obj, ISODate)
+        const ISOTime = timeEntriesDatalayer.toISOTime(obj, ISODate);
 
         const newTimeEntry = new timeEntryModel({
             userId: mongoose.Types.ObjectId(obj.userId),
@@ -53,9 +61,10 @@ class timeEntriesDatalayer {
     }
 
     static updateTimeEntryById(obj) {
-        debugger
+
+        //Formatting of date and time
         const ISODate = timeEntriesDatalayer.toISODate(obj);
-        const ISOTime = timeEntriesDatalayer.toISOTime(obj, ISODate);
+        const ISOTime = timeEntriesDatalayer.toISOTime(obj, ISODate)
 
         const entriesToUpdate = {
             timeIn: ISOTime.timeIn,
@@ -78,16 +87,24 @@ class timeEntriesDatalayer {
     static toISODate (obj) {
 
         //Set date
-        return moment(obj.date, 'YYYY/MM/DD').toISOString();
+        var x= moment(obj.date, 'YYYY/MM/DD')
+        var y= x.toISOString(true);
+        return y
     }
 
     static toISOTime(obj, date) {
 
+        (date == undefined) ? date = moment(new Date()) : '' ;
+
         //Making ISO standard time stamp
+        let selectedDate = date;
+        let timeInString = obj.timeIn.split(':');
+        let timeOutString = obj.timeOut.split(':');
+
         return {
-            timeIn : moment(new Date(`${date} ${obj.timeIn}`).toISOString()),
-            timeOut : moment(new Date(`${date} ${obj.timeOut}`).toISOString())
-        }
+            timeIn : moment(selectedDate).hour(timeInString[0]).minutes(timeInString[1]).toISOString(true),
+            timeOut : moment(selectedDate).hour(timeOutString[0]).minutes(timeOutString[1]).toISOString(true)
+        };
     }
 
 }

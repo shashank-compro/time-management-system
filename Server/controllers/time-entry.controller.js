@@ -43,7 +43,9 @@ class timeEntriesController {
             timeIn: req.body.timeIn,
             timeOut: req.body.timeOut,
             userId: req.body.userId,
-            onLeave: req.body.onLeave
+            onLeave: req.body.onLeave,
+            limit: req.query.limit,
+            sortOrder: req.query.sort
         }
 
         try {
