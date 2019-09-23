@@ -12,17 +12,17 @@ class usersDatalayer {
 
     // Creates new user 
     static createUser(userObj) {
-        const hashPassword = this.hashPassword(userObj.password);
-        let user = new userModel(
-            {
-                username: userObj.username,
-                email: userObj.email,
-                password: hashPassword,
-                firstname: userObj.firstname,
-                lastname: userObj.lastname
-            });
-
-        return user.save().catch(err => {
+        bcrypt.hash(userObj.password, saltRounds).then(function(hashPassword) {
+            let user = new userModel(
+                {
+                    username: userObj.username,
+                    email: userObj.email,
+                    password: hashPassword,
+                    firstname: userObj.firstname,
+                    lastname: userObj.lastname
+                });
+                return user.save();
+        }).catch(err => {
             throw new error(`Not able to save - ${err}`);
         });
     }
@@ -36,17 +36,19 @@ class usersDatalayer {
 
     // Update user details based on id
     static updateUserById(userid , updateUserObj) {
-        const hashPassword = this.hashPassword(updateUserObj.password);
-        let updatedUser = new userModel({
-            username: updateUserObj.username,
-            email: updateUserObj.email,
-            password: hashPassword,
-            firstname: updateUserObj.firstname,
-            lastname: updateUserObj.lastname
+        bcrypt.hash(updateUserObj.password, saltRounds).then(function(hashPassword) {
+            let updatedUser = new userModel({
+                username: updateUserObj.username,
+                email: updateUserObj.email,
+                password: hashPassword,
+                firstname: updateUserObj.firstname,
+                lastname: updateUserObj.lastname
+            });
+            return userModel.findByIdAndUpdate(userid, updatedUser).exec().catch(err => {
+                throw new Error(`Not able to edit user details for ${userid}`);
+            });
         });
-        return userModel.findByIdAndUpdate(userid, updatedUser).exec().catch(err => {
-            throw new Error(`Not able to edit user details for ${userid}`);
-        });
+        
     }
 
     // Delete user details based on id
@@ -54,12 +56,6 @@ class usersDatalayer {
         return userModel.findByIdAndRemove(userid).exec().catch((err) => {
             throw new Error (`Not able to delete leave. Error stack - ${err}`);
         });
-    }
-
-    // Creates hash for a password
-    static hashPassword (origPassword) {
-        var hashPassword = bcrypt.hashSync(origPassword, saltRounds);
-        return hashPassword;
     }
 }
 

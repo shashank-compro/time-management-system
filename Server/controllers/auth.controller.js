@@ -2,6 +2,7 @@
 const passport = require('passport');
 var jwt = require('jsonwebtoken');
 const passportConfig = require('../config/passport.config');
+const dbConfig = require('../config/default');
 /**
  * Class representing auth controller
  *
@@ -30,7 +31,7 @@ class authController {
               }
       
               /** generate a signed json web token and return it in the response */
-              const token = jwt.sign(JSON.stringify(payload), "secretkey");
+              const token = jwt.sign(JSON.stringify(payload), dbConfig.passport.secret);
 
               res.json({token});
       
