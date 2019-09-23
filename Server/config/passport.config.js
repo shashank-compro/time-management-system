@@ -6,11 +6,11 @@ const bcrypt = require('bcrypt');
 const userModel = require('../models/user.model');
 
 const localStrategy = new LocalStrategy({
-  usernameField: 'username',
+  usernameField: 'email',
   passwordField: 'password',
-  }, async (username, password, done) => {
+  }, async (email, password, done) => {
   try {
-      var userDocument = await userModel.findOne({username: username}).exec();
+      var userDocument = await userModel.findOne({email: email}).exec();
       const passwordsMatch = await bcrypt.compare(password, userDocument.password);
       if (passwordsMatch) {
         return done(null, userDocument);
