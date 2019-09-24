@@ -13,19 +13,37 @@ class timeEntriesController {
 
     static async getTimeEntriesByUserId(req, res) {
         let timeEntries;
+        const {user, limit, sort} = req.query;
+        const obj = {user, limit, sort};
 
-        const obj = {
-            userId: req.query.user,
-            limit: req.query.limit,
-            sortOrder: req.query.sort
+         //if user id not given in URL, send error message
+        if (!obj.user){
+            return res
+                .status(400)
+                .send({ "status": "error", "message": "Bad Request" });
+        }   
+
+        //set default sort order
+        switch (obj.sort) {
+            case 'asc':
+                obj.sort = { '_id': 1 };
+                break;
+            case 'desc':
+                obj.sort = { '_id': -1 }
+                break;
+            default:
+                obj.sort = { '_id': -1 };
+                break;
         }
 
+        //set default limit
+        obj.limit = obj.limit || 1;
         try {
             timeEntries = await dataLayer.getTimeEntriesByUserId(obj);
         } catch (e) {
             return res
                 .status(400)
-                .send({ "status": "error", "message": `Failed to get time entries for user: ${obj.userId}` });
+                .send({ "status": "error", "message": `Failed to get time entries for user: ${obj.user}` });
         }
 
         res.status(200)

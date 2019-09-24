@@ -12,29 +12,18 @@ class timeEntriesDatalayer {
      */
     static getTimeEntriesByUserId(obj) {
 
-        //if user id not given in URL, send error message
-        if (obj.userId == undefined){
-            throw new Error('No User ID provided');
-        }   
-
-        //set default sort order
-        let sortOrder = (obj.sortOrder == 'asc') ? { '_id': 1 } : { '_id': -1 };
-
-        //set default limit
-        let limit = (obj.limit == undefined) ? 1 : obj.limit;
-
         const params = {
-            userId : obj.userId,
-            limit : parseInt(limit),
-            sortOrder : sortOrder
+            userId : mongoose.Types.ObjectId(obj.user),
+            limit : parseInt(obj.limit),
+            sortOrder : obj.sort
         };
 
         return timeEntryModel
             .find({"userId" : params.userId}, null, {limit: params.limit})
-            .sort(sortOrder)
+            .sort(params.sortOrder)
             .exec()
             .catch((err) => {
-                throw new Error(`Could'nt fetch data with user ID ${userId}`);
+                throw new Error(`Could'nt fetch data with user ID ${params.userId}`);
 
         });
     }
@@ -42,14 +31,15 @@ class timeEntriesDatalayer {
     static createTimeEntry(obj) {
 
         //Formatting of date and time
-        const ISODate = timeEntriesDatalayer.toISODate(obj);
-        const ISOTime = timeEntriesDatalayer.toISOTime(obj, ISODate);
+        const ISODate = timeEntriesDatalayer.toISODate(obj.date);
+        const ISOTimeIn = timeEntriesDatalayer.toISOTime(obj.timeIn);
+        const ISOTimeOut = timeEntriesDatalayer.toISOTime(obj.timeOut);
 
         const newTimeEntry = new timeEntryModel({
             userId: mongoose.Types.ObjectId(obj.userId),
             date: ISODate,
-            timeIn: ISOTime.timeIn,
-            timeOut: ISOTime.timeOut,
+            timeIn: ISOTimeIn,
+            timeOut: ISOTimeOut,
             onLeave: obj.onLeave
         });
 
@@ -62,13 +52,13 @@ class timeEntriesDatalayer {
 
     static updateTimeEntryById(obj) {
 
-        //Formatting of date and time
-        const ISODate = timeEntriesDatalayer.toISODate(obj);
-        const ISOTime = timeEntriesDatalayer.toISOTime(obj, ISODate)
+        //Formatting of time
+        const ISOTimeIn = timeEntriesDatalayer.toISOTime(obj.timeIn);
+        const ISOTimeOut = timeEntriesDatalayer.toISOTime(obj.timeOut);
 
         const entriesToUpdate = {
-            timeIn: ISOTime.timeIn,
-            timeOut: ISOTime.timeOut,
+            timeIn: ISOTimeIn,
+            timeOut: ISOTimeOut,
             onLeave: obj.onLeave
         };
 
@@ -77,34 +67,28 @@ class timeEntriesDatalayer {
         };
 
         return timeEntryModel
-            .findByIdAndUpdate(filter, entriesToUpdate, { new: true })
+            .findByIdAndUpdate(filter, entriesToUpdate, { "omitUndefined": true, "new": true })
             .exec()
             .catch((err) => {
                 throw new Error('Could not update Time entry');
         });
     }
 
-    static toISODate (obj) {
+    static toISODate (date) {
 
         //Set date
-        var x= moment(obj.date, 'YYYY/MM/DD')
+        var x= moment(date, 'YYYY/MM/DD')
         var y= x.toISOString(true);
         return y
     }
 
-    static toISOTime(obj, date) {
+    static toISOTime(time) {
 
-        (date == undefined) ? date = moment(new Date()) : '' ;
+        let timeStringArray = time.split(':');
+        //convert in minutes
+        let timeInMinutes = parseInt(timeStringArray[0]) * 60 + parseInt(timeStringArray[1]);
 
-        //Making ISO standard time stamp
-        let selectedDate = date;
-        let timeInString = obj.timeIn.split(':');
-        let timeOutString = obj.timeOut.split(':');
-
-        return {
-            timeIn : moment(selectedDate).hour(timeInString[0]).minutes(timeInString[1]).toISOString(true),
-            timeOut : moment(selectedDate).hour(timeOutString[0]).minutes(timeOutString[1]).toISOString(true)
-        };
+        return timeInMinutes;
     }
 
 }
