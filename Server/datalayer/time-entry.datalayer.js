@@ -31,15 +31,15 @@ class timeEntriesDatalayer {
     static createTimeEntry(obj) {
 
         //Formatting of date and time
-        const ISODate = timeEntriesDatalayer.toISODate(obj.date);
-        const ISOTimeIn = timeEntriesDatalayer.toISOTime(obj.timeIn);
-        const ISOTimeOut = timeEntriesDatalayer.toISOTime(obj.timeOut);
+        const ISODate = timeEntriesDatalayer.convertToISODate(obj.date);
+        const timeInMinutes = timeEntriesDatalayer.convertToMinutes(obj.timeIn);
+        const timeOutMinutes = timeEntriesDatalayer.convertToMinutes(obj.timeOut);
 
         const newTimeEntry = new timeEntryModel({
             userId: mongoose.Types.ObjectId(obj.userId),
             date: ISODate,
-            timeIn: ISOTimeIn,
-            timeOut: ISOTimeOut,
+            timeIn: timeInMinutes,
+            timeOut: timeOutMinutes,
             onLeave: obj.onLeave
         });
 
@@ -53,12 +53,12 @@ class timeEntriesDatalayer {
     static updateTimeEntryById(obj) {
 
         //Formatting of time
-        const ISOTimeIn = timeEntriesDatalayer.toISOTime(obj.timeIn);
-        const ISOTimeOut = timeEntriesDatalayer.toISOTime(obj.timeOut);
+        const timeInMinutes = timeEntriesDatalayer.convertToMinutes(obj.timeIn);
+        const timeOutMinutes = timeEntriesDatalayer.convertToMinutes(obj.timeOut);
 
         const entriesToUpdate = {
-            timeIn: ISOTimeIn,
-            timeOut: ISOTimeOut,
+            timeIn: timeInMinutes,
+            timeOut: timeOutMinutes,
             onLeave: obj.onLeave
         };
 
@@ -74,21 +74,17 @@ class timeEntriesDatalayer {
         });
     }
 
-    static toISODate (date) {
+    static convertToISODate (date) {
 
         //Set date
-        var x= moment(date, 'YYYY/MM/DD')
-        var y= x.toISOString(true);
-        return y
+        return moment(date, 'YYYY/MM/DD').toISOString(true);
     }
 
-    static toISOTime(time) {
+    static convertToMinutes(time) {
 
         let timeStringArray = time.split(':');
         //convert in minutes
-        let timeInMinutes = parseInt(timeStringArray[0]) * 60 + parseInt(timeStringArray[1]);
-
-        return timeInMinutes;
+        return parseInt(timeStringArray[0]) * 60 + parseInt(timeStringArray[1]);
     }
 
 }
