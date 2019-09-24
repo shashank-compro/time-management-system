@@ -23,18 +23,8 @@ class timeEntriesController {
                 .send({ "status": "error", "message": "Bad Request" });
         }   
 
-        //set default sort order
-        switch (obj.sort) {
-            case 'asc':
-                obj.sort = { '_id': 1 };
-                break;
-            case 'desc':
-                obj.sort = { '_id': -1 }
-                break;
-            default:
-                obj.sort = { '_id': -1 };
-                break;
-        }
+        //check sort value
+        if (!obj.sort) obj.sort = 'desc';
 
         //set default limit
         obj.limit = obj.limit || 1;

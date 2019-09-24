@@ -11,11 +11,24 @@ class timeEntriesDatalayer {
      * Initializes the datalayer
      */
     static getTimeEntriesByUserId(obj) {
+        let sortOrder;
+        //set default sort order
+        switch (obj.sort) {
+            case 'asc':
+                sortOrder = { '_id': 1 };
+                break;
+            case 'desc':
+                sortOrder = { '_id': -1 }
+                break;
+            default:
+                sortOrder = { '_id': -1 };
+                break;
+        }
 
         const params = {
             userId : mongoose.Types.ObjectId(obj.user),
             limit : parseInt(obj.limit),
-            sortOrder : obj.sort
+            sortOrder : sortOrder
         };
 
         return timeEntryModel
@@ -82,6 +95,8 @@ class timeEntriesDatalayer {
 
     static convertToMinutes(time) {
 
+        //check if field not updated updated
+        if (!time) return;
         let timeStringArray = time.split(':');
         //convert in minutes
         return parseInt(timeStringArray[0]) * 60 + parseInt(timeStringArray[1]);
