@@ -4,6 +4,7 @@ const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcrypt');
 const userModel = require('../models/user.model');
+const dbConfig = require('../config/default');
 
 const localStrategy = new LocalStrategy({
   usernameField: 'email',
@@ -30,13 +31,12 @@ passport.use(localStrategy);
 // JWT Strategy options to be used in passport JWTStrategy
 const JWTStrategyOptions = {
   jwtFromRequest : ExtractJwt.fromHeader('authorization'),
-  secretOrKey : 'secretkey'
+  secretOrKey : dbConfig.passport.secret
 }
 
 const jwtStrategy = new JWTStrategy(JWTStrategyOptions, async (payload, done) => {
   try {
     var userDocument = await userModel.findOne({ "username": payload.username });
-    console.log(userDocument);
     if(!userDocument) {
       return done(null, false)
     }

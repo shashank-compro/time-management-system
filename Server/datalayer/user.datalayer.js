@@ -54,7 +54,7 @@ class usersDatalayer {
     // Delete user details based on id
     static deleteUserById(userid) {
         return userModel.findByIdAndRemove(userid).exec().catch((err) => {
-            throw new Error (`Not able to delete leave. Error stack - ${err}`);
+            throw new Error (`Not able to delete user for ${userid}`);
         });
     }
 }

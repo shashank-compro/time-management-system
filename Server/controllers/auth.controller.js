@@ -1,6 +1,6 @@
 "use strict";
 const passport = require('passport');
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const passportConfig = require('../config/passport.config');
 const dbConfig = require('../config/default');
 /**
