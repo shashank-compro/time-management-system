@@ -1,4 +1,4 @@
-const MongoDataLayer = require('./MongoDataLayer');
+const MongoDataLayer = require('./mongo.datalayer');
 const dbConfig = require('../config/default');
 /**
  * Factory class for getting the dataLayer instance
@@ -14,21 +14,9 @@ class DataLayerFactory {
     */
  
     static initMongoDataLayer() {
-        this.mongoDataLayer = new MongoDataLayer(dbConfig.mongo);
         console.log("Connecting to mongo database:", dbConfig.mongo.database)
-        return this.mongoDataLayer.connect();
+        return MongoDataLayer.connect(dbConfig.mongo);
     }
-
-
-    /**
-    * Factory function to get mongo datalayer
-    *
-    * @returns {object} Datalayer object
-    */
-   static getMongoDataLayer() {
-    return this.mongoDataLayer;
-}
-
 }
 
 module.exports = DataLayerFactory;

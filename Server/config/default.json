@@ -5,6 +5,13 @@
     "mongo":{
         "user": "dbUser1",
         "password": "dbpassword1",
-        "database": "test"
+        "database": "TMS",
+        "port": 27017,
+        "allowedCORSDomains": ["http://localhost:4200"],
+        "connectionString": "cluster0-shard-00-00-jt05i.mongodb.net:27017,cluster0-shard-00-01-jt05i.mongodb.net:27017,cluster0-shard-00-02-jt05i.mongodb.net:27017/TMS?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
+    },
+    "passport" : {
+        "secret" : "tms_jwt_secret",
+        "jwt_expiry" : 86400
     }
 }
