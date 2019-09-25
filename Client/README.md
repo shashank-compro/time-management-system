@@ -4,8 +4,8 @@
 ```bash
         --app-component
         --login
-	--dashboard
-		--content-page-wrapper
+	--content-wrapper
+		--dashboard
 		  --leaves
 		  --timeentry
 		--navigation-left
