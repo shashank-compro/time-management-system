@@ -11,11 +11,11 @@ const timeEntriesSchema = new mongoose.Schema({
         required: true
     },
     timeIn: {
-        type: Date,
+        type: Number,
         required: true
     },
     timeOut: {
-        type: Date,
+        type: Number,
         required: true
     },
     onLeave: {

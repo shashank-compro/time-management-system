@@ -17,5 +17,6 @@ class MongoDataLayer {
     static disconnect(){
         return mongoose.connection.close();
     }
+
 }
 module.exports = MongoDataLayer;
