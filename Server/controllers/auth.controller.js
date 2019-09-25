@@ -21,7 +21,7 @@ class authController {
 
           const payload = {
               username: user.username,
-              expires: Date.now() + parseInt(process.env.JWT_EXPIRATION_MS),
+              expires: dbConfig.passport.jwt_expiry,
             };
       
             /** assigns payload to req.user */

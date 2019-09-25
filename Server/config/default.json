@@ -13,6 +13,7 @@
         "query": "ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
     },
     "passport" : {
-        "secret" : "tms_jwt_secret"
+        "secret" : "tms_jwt_secret",
+        "jwt_expiry" : 3600
     }
 }

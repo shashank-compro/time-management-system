@@ -36,20 +36,17 @@ class usersDatalayer {
 
     // Update user details based on id
     static updateUserById(userid , updateUserObj) {
-        bcrypt.hash(updateUserObj.password, saltRounds).then(function(hashPassword) {
-            let updatedUser = {
-                username: updateUserObj.username,
-                email: updateUserObj.email,
-                password: hashPassword,
-                firstname: updateUserObj.firstname,
-                lastname: updateUserObj.lastname
-            };
-            return userModel
-            .findByIdAndUpdate(userid, updatedUser , {"omitUndefined" : true , "new": true}).exec()
-        }).catch((err) => {
+        let updatedUser = {
+            username: updateUserObj.username,
+            email: updateUserObj.email,
+            firstname: updateUserObj.firstname,
+            lastname: updateUserObj.lastname
+        };
+        return userModel
+        .findByIdAndUpdate(userid, updatedUser , {"omitUndefined" : true , "new": true}).exec()
+        .catch((err) => {
             throw new Error(`Not able to edit user details for ${userid}`);
         });
-        
     }
 
     // Delete user details based on id

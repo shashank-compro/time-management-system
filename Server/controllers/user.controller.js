@@ -25,7 +25,8 @@ class usersController {
 
 
   static async getUserById (req, res) {
-    let userid = req.params._id;
+    let userid = req.params.userid;
+    let user;
     try {
       user = await userDataLayer.getUserById(userid);
     }
@@ -38,7 +39,7 @@ class usersController {
 
 
   static async updateUserById (req, res) {
-    let userid = req.params._id;
+    let userid = req.params.userid;
     const updateUserObj = {
       username : req.body.username,
       email : req.body.email,
@@ -58,7 +59,7 @@ class usersController {
 
 
   static async deleteUserById (req, res) {
-    let userid = req.params.id;
+    let userid = req.params.userid;
     try {
       await userDataLayer.deleteUserById(userid);
     }
