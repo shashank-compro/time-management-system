@@ -13,9 +13,9 @@ router.get('/status', statusController.checkStatus);
 // auth api routes
 router.post('/users/register' , userController.createUser);
 router.post('/users/login', authController.login);
-router.get('/users/:_id', userController.getUsersByUserId);
-router.put('/users/:_id', userController.updateUserById);
-router.delete('/users/:_id' , userController.deleteUserById);
+router.get('/users/:userid', userController.getUserById);
+router.put('/users/:userid', userController.updateUserById);
+router.delete('/users/:userid' , userController.deleteUserById);
 
 //timeentry api routes
 router.get('/timeentries', timeEntriesController.getTimeEntriesByUserId);
