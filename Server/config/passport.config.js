@@ -37,7 +37,7 @@ const JWTStrategyOptions = {
 const jwtStrategy = new JWTStrategy(JWTStrategyOptions, async (payload, done) => {
   try { 
     // var userDocument = await userModel.findOne({ "username": payload.username });
-    if(!userDocument) {
+    if(!payload) {
       return done(null, false)
     }
     return done(null, true); //  returning true if the user exists
