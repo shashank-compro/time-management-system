@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   constructor() { }
-
+  // Will be changed in future, approach yet to discuss
+  // timeEntriesMode = true;
+  
   ngOnInit() {
   }
 
