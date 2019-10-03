@@ -1,0 +1,21 @@
+@import '../../scss/variables';
+
+.login-div {
+  background-color: $tms-background;
+  min-height: 100vh;
+}
+.login-button {
+  background-color: $button-color;
+  border-color: $button-color;
+}
+.register-button {
+  background-color: #1985ac;
+  border-color: #187da0;
+}
+.register-card {
+  background-color: $button-color!important ;
+}
+
+.error, .invalid-credentials {
+  color: $error-validation-text;
+}

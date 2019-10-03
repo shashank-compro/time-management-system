@@ -20,8 +20,10 @@ class authController {
           }
 
           const payload = {
-              username: user.username,
-              expires: dbConfig.passport.jwt_expiry,
+              id: user.id,
+              email: user.email,
+              firstname: user.firstname,
+              lastname: user.lastname
             };
       
             /** assigns payload to req.user */
@@ -33,8 +35,12 @@ class authController {
               /** generate a signed json web token and return it in the response */
               const token = jwt.sign(JSON.stringify(payload), dbConfig.passport.secret);
 
-              res.json({token});
-      
+              var tokenPayload = {
+                payload : payload,
+                token : token
+              }
+              
+               res.status(200).json({tokenPayload});      
       });
   })(req,res, next);
   }
