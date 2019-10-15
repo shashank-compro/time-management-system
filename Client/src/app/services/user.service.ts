@@ -25,17 +25,35 @@ export class UserService {
 
   getUserDetails(userPayload) {
     this.userDetails = userPayload;
-    // localStorage.setItem('userPayload',JSON.stringify(userPayload));
+    localStorage.setItem('userPayload',JSON.stringify(userPayload));
   }
 
   setUserDetails() {
+    if(Object.keys(this.userDetails).length !== 0)
     return this.userDetails.tokenPayload.payload.firstname;
+    else{
+      var userToken = JSON.parse(localStorage.getItem('userPayload'));
+       return userToken.tokenPayload.payload.firstname;
+    }
     // var userToken = JSON.parse(localStorage.getItem('userPayload'));
     // return userToken.tokenPayload.payload.firstname;
   }
 
-  deleteUser() {debugger;
+  isLoggedIn() {
+    var userToken = JSON.parse(localStorage.getItem('userPayload'));
+    if(Object.keys(this.userDetails).length !== 0)
+    return true;
+
+    else if(userToken)
+    return true;
+
+    else
+    return false;
+    
+  }
+
+  deleteUser() {
     this.userDetails =  {};
-    // localStorage.removeItem('userPayload');
+    localStorage.removeItem('userPayload');
   }
 }

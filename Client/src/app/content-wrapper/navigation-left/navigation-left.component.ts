@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faTachometerAlt , faClock, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-navigation-left',
@@ -12,6 +13,7 @@ export class NavigationLeftComponent implements OnInit {
   faCalendar = faCalendar;
 
   constructor() { }
+
 
   ngOnInit() {
   }

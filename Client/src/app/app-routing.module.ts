@@ -7,6 +7,7 @@ import { DashboardComponent } from './content-wrapper/dashboard/dashboard.compon
 import { LeavesComponent } from './content-wrapper/leaves/leaves.component';
 import { TimeentriesComponent } from './content-wrapper/timeentries/timeentries.component'
 import { AppComponent } from './app.component'
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -18,17 +19,21 @@ const routes: Routes = [
     children: [
           {
             path: 'dashboard',
-            component: DashboardComponent
+            component: DashboardComponent,
+            canActivate: [AuthGuard]
           },
           {
             path: 'timeentries',
-            component: TimeentriesComponent
+            component: TimeentriesComponent,
+            canActivate: [AuthGuard]
           },
           {
             path: 'leaves',
-            component: LeavesComponent
+            component: LeavesComponent,
+            canActivate: [AuthGuard]
           },
-        ]
+        ],
+        canActivate: [AuthGuard]
   },
   { path: '**', component: PageNotFoundComponent }
 ];
