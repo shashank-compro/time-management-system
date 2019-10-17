@@ -1,4 +1,35 @@
-<nav class="d-block bg-light sidebar navigation-left">
+<div id="sidebar-wrapper">
+      <nav class="d-block">
+          <ul class="sidebar-nav nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link"  [routerLink]="['/app/dashboard']" routerLinkActive="active" >
+                <fa-icon [icon]="faTachometerAlt"></fa-icon>
+                Dashboard <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  [routerLink]="['/app/timeentries']" routerLinkActive="active">
+                <fa-icon [icon]="faClock"></fa-icon>
+                Time Entry
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  [routerLink]="['/app/leaves']" routerLinkActive="active">
+                <fa-icon [icon]="faCalendar"></fa-icon>
+                Leaves
+              </a>
+            </li>
+          </ul>
+      </nav>
+  </div>
+
+ 
+
+
+
+
+
+<!-- <nav class="d-block bg-light sidebar navigation-left">
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
@@ -21,5 +52,5 @@
       </li>
     </ul>
   </div>
-</nav>
+</nav> -->
 

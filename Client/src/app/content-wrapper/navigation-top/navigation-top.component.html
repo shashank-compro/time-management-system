@@ -1,10 +1,18 @@
 <div class="header">
   <nav class="navbar navbar-expand-md navbar-light bg-white">
     <div class="container-fluid">
-      <a class="navbar-brand">
-        <img src="../../../assets/TMS_logo.png" width="35" height="35" class="d-inline-block align-top" alt="">
-        Time Management System
-      </a>
+      <div class="nav-brand">
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse"
+           (click)="toggleSidebar()">
+            <span class="navbar-toggler-icon">
+            </span></button>
+
+              <a class="tms-logo">
+              <img src="../../../assets/TMS_logo.png" width="35" height="35" class="d-inline-block align-top" alt="">
+              Time Management System
+            </a>
+      </div>
       <ul class="nav navbar-nav navbar-right">
         <li><h5 class="navbar-text">Hi {{firstname}}!!</h5></li>
         <li class="ml-2">

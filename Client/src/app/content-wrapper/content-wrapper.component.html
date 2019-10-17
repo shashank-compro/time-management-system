@@ -1,14 +1,21 @@
-<div class="content-wrapper">
+ <div class="content-wrapper">
         <app-navigation-top></app-navigation-top>
-        <div class="row">
-            <div class="col col-2">
-                <app-navigation-left></app-navigation-left>
-            </div>
-            <div class="col col-10">
-                <router-outlet></router-outlet>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 left-column">
+                    <app-navigation-left></app-navigation-left>
+                </div>
+                <div class="col-md-10 right-column">
+                    <div class="btn"></div>
+                    <router-outlet></router-outlet>
+                </div>
             </div>
         </div>
+     
 </div>
+
+
+
 
 
 

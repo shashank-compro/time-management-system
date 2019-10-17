@@ -6,4 +6,10 @@ import { Injectable } from '@angular/core';
 export class CommonService {
 
   constructor() { }
+
+   toggle : boolean = false;
+
+  isToggled(taggle: boolean){
+    this.toggle = taggle;
+  }
 }

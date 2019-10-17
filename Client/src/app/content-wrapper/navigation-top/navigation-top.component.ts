@@ -19,6 +19,10 @@ export class NavigationTopComponent implements OnInit {
     this.firstname = this.userService.setUserDetails();
   }
 
+  toggleSidebar(){
+
+  }
+
   onLogout() {
     this.router.navigate(['/']);
     this.userService.deleteUser();
