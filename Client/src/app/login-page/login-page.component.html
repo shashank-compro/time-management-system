@@ -28,7 +28,7 @@
                               </span>
                             </div>
                             <input class="form-control" formControlName="password" type="password" password placeholder="Password" required>
-                            <div *ngIf="submiited && loginForm.controls.password.errors" [ngClass]="{'error': loginForm.controls.password.errors}">
+                            <div *ngIf="submitted && loginForm.controls.password.errors" [ngClass]="{'error': loginForm.controls.password.errors}">
                               <div *ngIf="loginForm.controls.password.dirty && loginForm.controls.password.errors.required">Password is required</div>
                             </div>
                         </div>

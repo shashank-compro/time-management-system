@@ -3,7 +3,10 @@ const bodyParser = require('body-parser');
 const config = require('./config/default');
 const DataLayerFactory = require('./datalayer/factory.datalayer');
 const routes = require('./config/routes');
+const path = require('path');
 var cors = require('cors');
+
+
 
 const whitelist = config.mongo.allowedCORSDomains;
 const corsOptionsDelegate = function (req, callback) {
@@ -17,6 +20,13 @@ const corsOptionsDelegate = function (req, callback) {
 }
 
 const app = express();
+
+app.use(express.static(path.join(__dirname,'../Client/dist')));
+app.get('*',(req, res)=>{
+  res.send(path.join(__dirname, '../Client/dist/index.html'))
+})
+
+
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(cors(corsOptionsDelegate));
 
