@@ -11,7 +11,6 @@
     "start": "run-p start:api",
     "start:api": "npm start --prefix Server",
     "heroku-prebuild": "cd Client && ng build --prod",
-    "preinstall": "npm install -g @angular/cli",
     "install": "run-p install:api install:web",
     "install:api": "cd Server && npm install",
     "install:web": "cd Client && npm install",
