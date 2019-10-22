@@ -8,9 +8,9 @@
     "npm": "5.6.0"
   },
   "scripts": {
-    "start": "run-p start:api start:web",
+    "start": "run-p start:api",
     "start:api": "npm start --prefix Server",
-    "heroku-postbuild": "ng build --prod --prefix Client",
+    "heroku-postbuild": "cd Client && ng build --prod",
     "install": "run-p install:api install:web",
     "install:api": "cd Server && npm install",
     "install:web": "cd Client && npm install",
