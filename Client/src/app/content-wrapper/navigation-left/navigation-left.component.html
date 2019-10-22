@@ -1,4 +1,4 @@
-<div id="sidebar-wrapper">
+<div id="sidebar-wrapper" [ngClass]="{'toggled-open' :toggleSidebar==true, 'toggled-close': toggleSidebar==false }">
       <nav class="d-block">
           <ul class="sidebar-nav nav flex-column">
             <li class="nav-item">

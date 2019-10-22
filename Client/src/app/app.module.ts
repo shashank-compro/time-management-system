@@ -15,6 +15,7 @@ import { DashboardComponent } from './content-wrapper/dashboard/dashboard.compon
 import { LeavesComponent } from './content-wrapper/leaves/leaves.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TimeentriesComponent } from './content-wrapper//timeentries/timeentries.component';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TimeentriesComponent } from './content-wrapper//timeentries/timeentries
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

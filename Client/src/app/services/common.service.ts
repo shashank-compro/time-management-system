@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Observable, of as observableOf, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
+  [x: string]: any;
 
-  constructor() { }
+  constructor() {}
 
-   toggle : boolean = false;
+  private toggle = new Subject<boolean>();
+  
+   setToggle(toggle){
+       this.toggle.next(toggle);
+   }
 
-  isToggled(taggle: boolean){
-    this.toggle = taggle;
+  getToggle(): Observable<any> {
+    return this.toggle.asObservable();
   }
+
 }

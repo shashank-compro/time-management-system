@@ -44,18 +44,30 @@
     text-decoration: none;
   }
   
+  .toggled-open{
+    left: 195px !important ;
+  }
 
-  
+  .toggled-close{
+    left: 0px !important ;
+  }
 
-  @media (max-width:767px) {
+    @media (max-width:767px) {
   
     #sidebar-wrapper {
     left: 0;
   }
   
-  #menu-toggle {
-    display: inline-block;
-  }
+ 
   
   }
   
+  @media (min-width:767px) {
+  
+    #sidebar-wrapper {
+    left: 195px !important;
+  }
+  
+ 
+  
+  }

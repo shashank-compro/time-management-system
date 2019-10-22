@@ -3,19 +3,26 @@
 .header {
     border-bottom: 1px solid #c8ced3;
 }
-.tbtn{
-    padding: .25rem .75rem;
-    font-size: 1.25rem;
-    line-height: 1;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    transition: all 0.6s ease 0s;
+// .navbar{
+//   padding: 0;
+//   padding-right: 2px;
+    
+// }
+
+
+.navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
+ 
+.navbar-toggler-icon{
+    font-size: 0.8em;
 }
 
 @media (max-width:767px) {
  
-   .tms-logo{
+   .tms-text{
        margin-left: 15px
    }
   

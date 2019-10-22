@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { CommonService } from '../../services/common.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,15 +14,25 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 export class NavigationTopComponent implements OnInit {
   faSignOutAlt = faSignOutAlt;
   firstname: string = "";
-
-  constructor(private userService : UserService, private router : Router) { }
+  
+  
+  toggle:boolean;
+  subscription: Subscription;
+  constructor(private userService : UserService, private router : Router, private toggleIt: CommonService) { }
 
   ngOnInit() {
     this.firstname = this.userService.setUserDetails();
+    this.subscription = this.toggleIt.getToggle().subscribe(
+      value => {
+       this.toggle = value;
+      });
   }
 
   toggleSidebar(){
-
+    if(this.toggle)
+     this.toggleIt.setToggle(false);
+     else
+        this.toggleIt.setToggle(true);
   }
 
   onLogout() {
