@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "@angular/cli": "7.3.8",
-    "@angular-devkit/build-angular": "^0.803.12"
+    "@angular-devkit/build-angular": "^0.12.4"
   }
 }
