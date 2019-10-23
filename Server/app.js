@@ -6,7 +6,7 @@ const routes = require('./config/routes');
 const path = require('path');
 var cors = require('cors');
 
-
+const port = process.env.PORT || 3000;
 
 const whitelist = config.mongo.allowedCORSDomains;
 const corsOptionsDelegate = function (req, callback) {
@@ -33,8 +33,8 @@ app.use(cors(corsOptionsDelegate));
 app.use('/api/v1', routes);
 
 DataLayerFactory.initMongoDataLayer().then(() => {
-    console.log(`API Server listening on port ${config.app.port}`);
-    app.listen(config.app.port);
+    console.log(`API Server listening on port ${port}`);
+    app.listen(port);
 });
 
 module.exports = app;
