@@ -22,15 +22,17 @@ const corsOptionsDelegate = function (req, callback) {
 const app = express();
 
 app.use(express.static(path.join(__dirname,'../Client/dist')));
-app.get('*',(req, res)=>{
-  res.send(path.join(__dirname, '../Client/dist/index.html'))
-})
+
 
 
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(cors(corsOptionsDelegate));
 
 app.use('/api/v1', routes);
+
+app.get('*',(req, res)=>{
+  res.sendFile(path.join(__dirname, '../Client/dist/index.html'))
+})
 
 DataLayerFactory.initMongoDataLayer().then(() => {
     console.log(`API Server listening on port ${port}`);
