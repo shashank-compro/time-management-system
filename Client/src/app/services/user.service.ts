@@ -20,7 +20,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
   
   addUser(user : User) : Observable<User> {
-    return this.http.post<User>('http://localhost:3000/api/v1/users/login',user, httpOptions);
+    return this.http.post<User>('https://gentle-beyond-54046.herokuapp.com/api/v1/users/login',user, httpOptions);
   }
 
   getUserDetails(userPayload) {
