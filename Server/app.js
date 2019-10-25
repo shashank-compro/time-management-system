@@ -4,6 +4,7 @@ const config = require('./config/default');
 const DataLayerFactory = require('./datalayer/factory.datalayer');
 const routes = require('./config/routes');
 var cors = require('cors');
+var path = require('path');
 
 const whitelist = config.mongo.allowedCORSDomains;
 const corsOptionsDelegate = function (req, callback) {
@@ -19,8 +20,13 @@ const corsOptionsDelegate = function (req, callback) {
 const app = express();
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(cors(corsOptionsDelegate));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1', routes);
+app.use('/', (req, res)=>{
+  res.sendFile('index.html', { root: path.join(__dirname, 'public') })
+});
+
 
 DataLayerFactory.initMongoDataLayer().then(() => {
     console.log(`API Server listening on port ${config.app.port}`);

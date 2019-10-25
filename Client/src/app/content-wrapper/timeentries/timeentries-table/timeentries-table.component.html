@@ -1,0 +1,51 @@
+<hr>
+<!-- //row table-wrapper -->
+<div class=" ml-4">
+  <div class="card">
+    <div class="card-header">
+      <div>Previous Time entries..</div>
+    </div>
+    <div class="card-body">
+      <table class="table table-responsive-sm time-entries-table">
+        <!-- //heading -->
+        <thead class="">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time In</th>
+            <th scope="col">TIme Out</th>    
+            <th scope="col">On Leave</th>       
+            <th scope="col">Edit</th>     
+          </tr>
+  
+        </thead>
+  
+        <tbody *ngIf='!updated; else loaderEnded'>
+          <tr><td colspan="4">
+              <div class="justify-content-center table-loader">
+                  <div class="spinner-border text-primary" role="status"></div>
+              </div>
+          </td></tr>
+        </tbody>
+        <ng-template #loaderEnded>
+        <tbody>
+          <tr *ngIf="!timeEntryResponseLength; else elseBlock"> No data to display.</tr>
+          <ng-template #elseBlock>
+            <tr *ngFor="let timeEntry of timeEntryWithEntryId">
+            <td>{{timeEntry.date}}</td>
+            <td>{{timeEntry.timeIn}}</td>
+            <td>{{timeEntry.timeOut}}</td>
+            <td *ngIf = 'timeEntry.onLeave; else notOnLeaveBlock'>Yes</td>
+            <ng-template #notOnLeaveBlock><td>No</td></ng-template>
+            <td>
+              <button *ngIf='timeEntry.isToday' type="button" class="btn p-0" data-toggle="modal" (click)="setTimeEntriesMode('update-entry', timeEntry)">
+                <fa-icon class="text-warning" [icon]="faEdit"></fa-icon>
+              </button></td>
+          </tr>
+          </ng-template>
+        </tbody>
+        </ng-template>
+      </table>
+    </div>
+    </div>
+
+

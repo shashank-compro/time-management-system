@@ -1,0 +1,18 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <div class="lead">
+      Time entry form
+    </div>
+  </div>
+  <div class="card-body text-center">
+    <div class="justify-content-center table-loader" *ngIf='!updated; else loaderEnded'>
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <ng-template #loaderEnded>
+      <button type="button" class="btn btn-primary" data-toggle="modal" [disabled]='todaysEntryCheck'
+        (click)='setTimeEntriesMode("new-entry")'>
+        Time entry
+      </button>
+    </ng-template>
+  </div>
+</div>
