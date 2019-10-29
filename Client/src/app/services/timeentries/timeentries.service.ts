@@ -11,7 +11,7 @@ import { HttpClient, HttpHeaders, HttpParams    } from '@angular/common/http';
 export class TimeentriesService {
   
   //POST
-  timeEntriesURL = 'http://localhost:3000/api/v1/timeentries';
+  timeEntriesURL = 'http://comprotms.herokuapp.com/api/v1/timeentries';
 
   createTimeEntry(timeEntry: timeEntry): Observable<timeEntryWithEntryId> {
  

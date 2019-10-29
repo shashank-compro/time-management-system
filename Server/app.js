@@ -30,9 +30,9 @@ app.use(cors(corsOptionsDelegate));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1', routes);
-app.use('/', (req, res)=>{
-  res.sendFile('index.html', { root: path.join(__dirname, 'public') })
-});
+// app.use('/', (req, res)=>{
+//   res.sendFile('index.html', { root: path.join(__dirname, 'public') })
+// });
 
 
 app.get('*',(req, res)=>{
