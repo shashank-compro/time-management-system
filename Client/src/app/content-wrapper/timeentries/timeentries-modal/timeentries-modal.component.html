@@ -1,0 +1,57 @@
+<div class="modal fade" id="timeEntryUpdateModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <p class="modal-title">{{formTitle}}</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+          <form class="" [formGroup]="timeEntriesAndUpdateForm" >
+            <div class="col col-md-auto align-items-center">
+              <div class="row mb-3">
+                <label for="timeIn" class="col-md-3 col-form-label">Time In:</label>
+                <div class="col col-md-6">
+                  <input type="time" class="col form-control" placeholder="Please enter time in"
+                    formControlName="timeIn">
+                  <span class="help-block"
+                    *ngIf="!timeEntriesAndUpdateForm.get('timeIn').valid && timeEntriesAndUpdateForm.get('timeIn').dirty">
+                    Please enter a valid time!
+                  </span>
+                </div>
+                
+              </div>
+              <!--Time Out -->
+              <div class="row mb-3">
+                <label for="timeOut" class="col-md-3 col-form-label">Time Out:</label>
+                <div class="col col-md-6">
+                  <input type="time" class="col form-control" placeholder="Please enter time out"
+                    formControlName="timeOut">
+                  <span class="help-block"
+                    *ngIf="(!timeEntriesAndUpdateForm.get('timeOut').valid && timeEntriesAndUpdateForm.get('timeOut').dirty ) || timeEntriesAndUpdateForm.get('timeIn')>timeEntriesAndUpdateForm.get('timeOut')">
+                    Please enter a valid time!
+                  </span>
+                </div>
+                
+              </div>
+              <!-- On Leave -->
+              <div class="row mb-3">
+                <label class=" col-3 " for="inlineCheckbox1">On Leave</label>
+                <input class="ml-3 mt-2 " type="checkbox" id="inlineCheckbox1" value="option1"
+                  formControlName="onLeave">
+
+              </div>
+            </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+          <button class="btn btn-success btn-submit" type="submit" (click)="onSubmit()" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
