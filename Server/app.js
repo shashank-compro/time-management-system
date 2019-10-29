@@ -27,8 +27,13 @@ app.use(express.static(path.join(__dirname,'../Client/dist')));
 
 app.use(bodyParser.json({limit: '1mb'}));
 app.use(cors(corsOptionsDelegate));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1', routes);
+app.use('/', (req, res)=>{
+  res.sendFile('index.html', { root: path.join(__dirname, 'public') })
+});
+
 
 app.get('*',(req, res)=>{
   res.sendFile(path.join(__dirname, '../Client/dist/index.html'))

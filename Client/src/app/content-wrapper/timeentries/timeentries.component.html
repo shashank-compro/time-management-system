@@ -1,3 +1,37 @@
-<p>
-  timeentries works!
-</p>
+<div class="card">
+    <div class="card-header time-entry-heading"> <div>
+      Time Entry
+    </div>   </div>
+      <div class="card-body">
+          <div class="container">
+      
+              <div class="col mt-5 ml-4">
+                <h6>Please make your time entry :-</h6>
+              </div>
+              <div class="row">
+                <div class="col col-7 mt-4 ml-5 pb-4 time-entry-form">
+                  <div class="col">
+                    <app-timeentries-form></app-timeentries-form>
+                  </div>
+            
+                </div>
+                <div class="col ml-5 mt-4">
+                  <p>Note:- <br> 1. Time out should not be before Time in <br> 2. Salary is calculated on the basis of hours spent in a day. <br> 3. Suspendisse interdum, libero pulvinar fringilla interdum<br>4. Nam et dolor vel ipsum aliquet </p>
+                </div>
+              </div>
+            
+              <div class="row mt-5 ml-4">
+                <h6>Previous records</h6>
+              </div>
+              <div class="row mb-5 mr-3">
+                <div class="col">
+                  <app-timeentries-table [todaysEntryObject]='todaysEntryObject'></app-timeentries-table>
+                </div>
+            
+              </div>
+              <app-timeentries-modal (todaysEntryObject)="receiveTodaysEntry($event)"></app-timeentries-modal>
+            </div>
+      </div>
+
+  </div>
+

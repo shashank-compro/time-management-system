@@ -1,0 +1,20 @@
+@import '../timeentries.component.scss';
+.table-wrapper {
+    border: $border;
+}
+
+.table-loader {
+    display: flex;
+}
+
+.time-entries-table thead {
+  color: #5c6873;
+  background-color: #e4e7ea;
+  border-color: #c8ced3;
+  }
+  
+  .time-entries-table td {
+  vertical-align: middle;
+  padding: 0.5rem;
+  }
+
