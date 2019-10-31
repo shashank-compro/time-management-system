@@ -15,6 +15,9 @@ import { DashboardComponent } from './content-wrapper/dashboard/dashboard.compon
 import { LeavesComponent } from './content-wrapper/leaves/leaves.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TimeentriesComponent } from './content-wrapper//timeentries/timeentries.component';
+import { LeavesFormComponent } from './content-wrapper/leaves/leaves-form/leaves-form.component';
+import { LeavesListComponent } from './content-wrapper/leaves/leaves-list/leaves-list.component';
+import { LeaveModalComponent } from './content-wrapper/leaves/leave-modal/leave-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { TimeentriesComponent } from './content-wrapper//timeentries/timeentries
     LeavesComponent,
     PageNotFoundComponent,
     TimeentriesComponent,
+    LeavesFormComponent,
+    LeavesListComponent,
+    LeaveModalComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,6 @@ import { TimeentriesComponent } from './content-wrapper//timeentries/timeentries
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     HttpClientModule
   ],
   providers: [],

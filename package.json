@@ -7,10 +7,9 @@
     "start": "run-p start:api start:web",
     "start:api": "npm start --prefix Server",
     "start:web": "npm start --prefix Client",
-
     "install": "run-p install:api install:web",
-    "install:api":  "cd Server && npm install",
-    "install:web":  "cd Client && npm install",
+    "install:api": "cd Server && npm install",
+    "install:web": "cd Client && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,7 +23,10 @@
   },
   "homepage": "https://github.com/shashank-compro/time-management-system#readme",
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "html-webpack-plugin": "^3.2.0",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^4.41.0",
+    "webpack-dev-server": "^3.8.1"
   },
   "dependencies": {}
 }
