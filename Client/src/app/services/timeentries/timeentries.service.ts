@@ -9,28 +9,43 @@ import { HttpClient, HttpHeaders, HttpParams    } from '@angular/common/http';
 })
 
 export class TimeentriesService {
-  
+
+
   //POST
   timeEntriesURL = 'http://comprotms.herokuapp.com/api/v1/timeentries';
+ // timeEntriesURL = 'http://localhost:3000/api/v1/timeentries';
+
 
   createTimeEntry(timeEntry: timeEntry): Observable<timeEntryWithEntryId> {
- 
-    return this.http.post<timeEntryWithEntryId>(this.timeEntriesURL, timeEntry);
+    var token = this.getUserPayload().tokenPayload.token;
+    let headers = new HttpHeaders().set('authorization', token);
+    return this.http.post<timeEntryWithEntryId>(this.timeEntriesURL, timeEntry,{headers: headers});
 
   }
+
+  getUserPayload(){
+    return  JSON.parse(localStorage.getItem('userPayload')); 
+    }
 
   //GET
   getTimeEntries() : Observable<timeEntryWithEntryId[]>{
     //NEED TO REPLACE WITH TOKEN PAYLOAD ID
-    return this.http.get<timeEntryWithEntryId[]>(this.timeEntriesURL+ '?user=5d7f74cfd211a424ac7abcae&limit=6');
+    var userPayloadID = this.getUserPayload().tokenPayload.payload.id
+    var token = this.getUserPayload().tokenPayload.token;
+    let headers = new HttpHeaders().set('authorization', token);
+     return this.http.get<timeEntryWithEntryId[]>(this.timeEntriesURL+ `?user=${userPayloadID}&limit=6`,{headers: headers});
   }
 
 //PUT
   updateTimeEntry(timeEntry: timeEntry, entryId: string): Observable<timeEntryWithEntryId> {
- 
-    return this.http.put<timeEntryWithEntryId>(this.timeEntriesURL+ `/${entryId}`, timeEntry);
+    var token = this.getUserPayload().tokenPayload.token;
+    let headers = new HttpHeaders().set('authorization', token);
+    return this.http.put<timeEntryWithEntryId>(this.timeEntriesURL+ `/${entryId}`, timeEntry,{headers: headers});
 
   } 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
+
 }

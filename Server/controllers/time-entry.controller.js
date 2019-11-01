@@ -5,6 +5,7 @@
  * @class timeEntriesController
  */
 const dataLayer = require('../datalayer/time-entry.datalayer')
+const authControler = require('../controllers/auth.controller');
 
 
 class timeEntriesController {
@@ -12,6 +13,7 @@ class timeEntriesController {
     //  GET 
 
     static async getTimeEntriesByUserId(req, res) {
+    
         let timeEntries;
         const {user, limit, sort} = req.query;
         const obj = {user, limit, sort};

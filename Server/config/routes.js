@@ -8,7 +8,7 @@ const userController = require('../controllers/user.controller');
 const authController = require('../controllers/auth.controller');
 
 // api routes
-router.get('/status', statusController.checkStatus);
+router.get('/status', authController.protectedRequest);
 
 // auth api routes
 router.post('/users/register' , userController.createUser);
@@ -18,9 +18,9 @@ router.put('/users/:userid', userController.updateUserById);
 router.delete('/users/:userid' , userController.deleteUserById);
 
 //timeentry api routes
-router.get('/timeentries', timeEntriesController.getTimeEntriesByUserId);
-router.post('/timeentries', timeEntriesController.createTimeEntry);
-router.put('/timeentries/:timeEntryId', timeEntriesController.updateTimeEntryById);
+router.get('/timeentries',[authController.protectedRequest],timeEntriesController.getTimeEntriesByUserId);
+router.post('/timeentries',[authController.protectedRequest],timeEntriesController.createTimeEntry);
+router.put('/timeentries/:timeEntryId',[authController.protectedRequest], timeEntriesController.updateTimeEntryById);
 
 //Leave api routes
 router.get('/leaves', leavesController.getLeavesByUserId);

@@ -132,14 +132,22 @@ onUpdateEntrySubmit(){
   
 }
 
+getUserPayload(){
+return  JSON.parse(localStorage.getItem('userPayload')); 
+}
+
 
 formatNewTimeEntry(entryFormGroupObject) {
 
   var dateToday = moment(new Date()).format('YYYY/MM/DD');
   console.log(dateToday)
+  var userPayloadID = this.getUserPayload().tokenPayload.payload.id;
+
+  
   return {
     //need to update user id from Ashmeet's variable of user
-    userId: '5d7f74cfd211a424ac7abcae',
+    //userId: '5d7f74cfd211a424ac7abcae',
+    userId : userPayloadID,
     date: dateToday,
     timeIn: entryFormGroupObject.timeIn,
     timeOut: entryFormGroupObject.timeOut,

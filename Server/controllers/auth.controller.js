@@ -52,9 +52,11 @@ class authController {
       if(!user) {
         return res.status(401).send(info.message); // 401 status code is unauthorized user.
       }
-      res.send(user)
+       else{
+         next();
+       }
     })(req,res, next)
-    
+  
   }
 }
 

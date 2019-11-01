@@ -44,9 +44,9 @@ export class TimeentriesFormComponent implements OnInit {
 
     var dateToday = moment(new Date()).format('YYYY/MM/DD');
     console.log(dateToday)
+    var userPayloadID = this.getUserPayload().tokenPayload.payload.id;
     return {
-      //need to update user id from Ashmeet's variable of user
-      userId: '5d7f74cfd211a424ac7abcae',
+      userId : userPayloadID,
       date: dateToday,
       timeIn: this.convertToMinutes(entryFormGroupObject.timein),
       timeOut: this.convertToMinutes(entryFormGroupObject.timeout),
@@ -54,7 +54,9 @@ export class TimeentriesFormComponent implements OnInit {
     }
   }
 
-
+  getUserPayload(){
+    return  JSON.parse(localStorage.getItem('userPayload')); 
+    }
   convertToMinutes(time) {
 
     //check if field not updated updated
