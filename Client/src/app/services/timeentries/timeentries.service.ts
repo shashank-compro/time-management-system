@@ -12,7 +12,7 @@ export class TimeentriesService {
 
 
   //POST
-  timeEntriesURL = 'http://comprotms.herokuapp.com/api/v1/timeentries';
+  timeEntriesURL = 'https://comprotms.herokuapp.com/api/v1/timeentries';
  // timeEntriesURL = 'http://localhost:3000/api/v1/timeentries';
 
 
