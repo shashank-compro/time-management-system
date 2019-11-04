@@ -23,9 +23,9 @@ router.post('/timeentries',[authController.protectedRequest],timeEntriesControll
 router.put('/timeentries/:timeEntryId',[authController.protectedRequest], timeEntriesController.updateTimeEntryById);
 
 //Leave api routes
-router.get('/leaves', leavesController.getLeavesByUserId);
-router.post('/leaves', leavesController.createLeave);
-router.put('/leaves/:leaveId', leavesController.updateLeaveById);
-router.delete('/leaves/:leaveId', leavesController.deleteLeaveById);
+router.get('/leaves', [authController.protectedRequest],leavesController.getLeavesByUserId);
+router.post('/leaves', [authController.protectedRequest], leavesController.createLeave);
+router.put('/leaves/:leaveId',[authController.protectedRequest], leavesController.updateLeaveById);
+router.delete('/leaves/:leaveId',[authController.protectedRequest], leavesController.deleteLeaveById);
 
 module.exports = router;

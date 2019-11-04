@@ -20,6 +20,9 @@ import { TimeentriesComponent } from './content-wrapper//timeentries/timeentries
 import { TimeentriesFormComponent } from './content-wrapper/timeentries/timeentries-form/timeentries-form.component'
 import { TimeentriesTableComponent } from './content-wrapper/timeentries/timeentries-table/timeentries-table.component';
 import { TimeentriesModalComponent } from './content-wrapper/timeentries/timeentries-modal/timeentries-modal.component'
+import { LeavesFormComponent } from './content-wrapper/leaves/leaves-form/leaves-form.component';
+import { LeavesListComponent } from './content-wrapper/leaves/leaves-list/leaves-list.component';
+import { LeaveModalComponent } from './content-wrapper/leaves/leave-modal/leave-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { TimeentriesModalComponent } from './content-wrapper/timeentries/timeent
     TimeentriesComponent,
     TimeentriesFormComponent,
     TimeentriesTableComponent,
-    TimeentriesModalComponent
+    TimeentriesModalComponent,
+    LeavesFormComponent,
+    LeavesListComponent,
+    LeaveModalComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,6 @@ import { TimeentriesModalComponent } from './content-wrapper/timeentries/timeent
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     HttpClientModule,
     TooltipModule
   ],

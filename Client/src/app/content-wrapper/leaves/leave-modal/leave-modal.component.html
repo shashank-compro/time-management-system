@@ -1,0 +1,105 @@
+<div class="modal fade" id="leaveModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" *ngIf="!newSubmitted && !editSubmitted && !deleteSubmitted">
+        <h5 class="modal-title">{{ title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="col-md-12" [formGroup]="leavesForm" *ngIf="(!newSubmitted && !editSubmitted) && mode != 'delete'">
+          <div class="col col-md-auto align-items-center">
+                <!-- Start Date -->
+            <div class="row mb-3">
+              <label for="startDate" class="col-md-4 col-form-label">Start Date:</label>
+              <div class="col col-md-8">
+                <input 
+                  type="date" 
+                  class="col form-control" 
+                  placeholder="DD-MM-YY"
+                  formControlName= "startDate" >
+                  <span class="help-block text-danger"
+                    *ngIf="!leavesForm.get('startDate').valid && leavesForm.get('startDate').dirty">
+                      Please enter a valid date!
+                  </span>
+              </div>
+            </div>
+                <!-- End Date -->
+            <div class="row mb-3">
+              <label for="endDate" class="col-md-4 col-form-label">End Date:</label>
+              <div class="col col-md-8">
+                <input 
+                  type="date" 
+                  class="col form-control" 
+                  placeholder="DD-MM-YY"
+                  formControlName= "endDate" >
+                  <span class="help-block text-danger"
+                    *ngIf="!leavesForm.get('endDate').valid && leavesForm.get('endDate').dirty">
+                      Please enter a valid date!
+                  </span>
+                  <span class="help-block text-danger"
+                    *ngIf="leavesForm.hasError('datesError')">
+                      End Date cannot be before Start Date!
+                  </span>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="reason" class="col-md-4 col-form-label">Reason:</label>
+              <div class="col col-md-8">
+                <select class="col form-control" formControlName="reason">
+                  <option>Health Reasons</option>
+                  <option>Family Obligations</option>
+                  <option>Not in mood</option>
+                  <option>Natural calamity</option>
+                  <option>Any other</option>
+                </select>
+                <span class="help-block text-danger"
+                  *ngIf="!leavesForm.get('reason').valid && leavesForm.get('reason').dirty">
+                    Please enter a reason!
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="alert alert-primary" role="alert" *ngIf="newSubmitted && !saved">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Saving Application...
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="saved">
+          <fa-icon [icon]="faCheck"></fa-icon>
+          Your Application is Saved!
+        </div>
+
+        <div class="alert alert-primary" role="alert" *ngIf="editSubmitted && !updated">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Updating Application...
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="updated">
+          <fa-icon [icon]="faCheck"></fa-icon>
+          Your Application is Updated!
+        </div>
+
+        <p *ngIf="!deleteSubmitted && mode == 'delete'">Are you sure you want to delete your Leave Application?</p>
+        <div class="alert alert-primary" role="alert" *ngIf="deleteSubmitted && !deleted">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Deleting Application...
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="deleted">
+          <fa-icon [icon]="faCheck"></fa-icon>
+          Your Application is Deleted!
+        </div>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" *ngIf="(newSubmitted || editSubmitted) && mode != 'delete'" (click)="onClose()">Close</button>
+          <button class="btn btn-success btn-submit" [disabled]="!leavesForm.valid || !leavesForm.dirty" (click)="onSubmit()" data-dismiss="modal" *ngIf="!newSubmitted && !editSubmitted && mode != 'delete'">Apply</button>
+          
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" *ngIf="mode == 'delete'">Close</button>
+          <button class="btn btn-danger btn-submit" (click)="onSubmit()" *ngIf="!deleteSubmitted && mode == 'delete'">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

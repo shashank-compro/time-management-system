@@ -1,0 +1,40 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <div class="">
+      My Planned Leaves
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="text-center" *ngIf="leavesList.length == 0">
+      You don't have any Leaves Planned yet! Get a Life man!
+    </div>
+    <table class="table leaves-table" *ngIf="leavesList.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Reason</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let leave of leavesList">
+          <td>{{leave.startDate | slice:0:10}}</td>
+          <td>{{leave.endDate | slice:0:10}}</td>
+          <td>{{leave.reason}}</td>
+          <td>
+            <button type="button" class="btn" (click)="launchModal(leave)">
+              <fa-icon class="text-warning" [icon]="faEdit"></fa-icon>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn" (click)="launchDeleteModal(leave._id)">
+              <fa-icon class="text-danger" [icon]="faTrash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

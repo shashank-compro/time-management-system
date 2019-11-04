@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leaves.component.scss']
 })
 export class LeavesComponent implements OnInit {
+  updateRequired: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  sendUpdateRequest () {
+    console.log("in leavePosted");
+    this.updateRequired = !this.updateRequired;
   }
 
 }
