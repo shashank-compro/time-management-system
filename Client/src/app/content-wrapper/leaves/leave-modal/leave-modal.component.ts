@@ -110,8 +110,8 @@ export class LeaveModalComponent implements OnInit {
       this.newSubmitted = true;
       this.leavesDataService.postLeave(leave).subscribe(
         () => {
-          setTimeout( () => { this.saved = true; }, 1000 );
-          // this.saved = true;
+          
+          this.saved = true;
           this.sendUpdateRequest.emit();
         },
         (err) => console.log(err),

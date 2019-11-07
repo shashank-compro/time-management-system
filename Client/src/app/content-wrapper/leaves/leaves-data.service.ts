@@ -25,7 +25,7 @@ export class LeavesDataService {
     return  JSON.parse(localStorage.getItem('userPayload')); 
     }
 
-  getLeaves () {debugger
+  getLeaves () {
     return this.http.get<Leave>(this.baseUrl + `?user=${this.getUserPayload().tokenPayload.payload.id}`, this.httpOptions);
   }
 

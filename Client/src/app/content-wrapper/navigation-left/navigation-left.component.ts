@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
-import { faTachometerAlt , faClock, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faHome , faClock, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../../services/user.service';
 import { CommonService } from '../../services/common.service';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class NavigationLeftComponent implements OnInit {
   
   
-  faTachometerAlt = faTachometerAlt;
+  faHome = faHome;
   faClock = faClock;
   faCalendar = faCalendar;
 

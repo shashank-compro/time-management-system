@@ -1,20 +1,15 @@
-<div class="card mt-4 mr-4 mb-4">
-    <div class="card-header">
-        <div class="">
-            <strong>Manage Leaves</strong>
-        </div>
-    </div>
-    <div class="card-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <app-leaves-form></app-leaves-form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <app-leaves-list [updateRequired]="updateRequired"></app-leaves-list>
-                </div>
-            </div>
+<h1 class="display-4">Apply and Manage Your Leaves</h1>
+<hr>
+<div class="row">
+    <div class="col-md-12">
+        <app-leaves-form></app-leaves-form>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+         <app-leaves-list [updateRequired]="updateRequired"></app-leaves-list>
+     </div>
+</div>
+    
+
 <app-leave-modal (sendUpdateRequest)="sendUpdateRequest()"></app-leave-modal>

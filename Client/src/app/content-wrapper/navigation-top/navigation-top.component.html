@@ -1,5 +1,5 @@
 <div class="header">
-  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white p-0 pr-2">
+  <nav class="navbar sticky-top navbar-expand-lg bg-primary navbar-dark p-0 pr-2 border-bottom">
     <div class="container-fluid navbar-header">
   
       <div class="nav-brand">
@@ -9,13 +9,13 @@
             <span class="navbar-toggler-icon">
             </span></button>
 
-              <a class="navbar-brand tms-text">
+              <a class="navbar-brand text-light">
               <!-- <img src="../../../assets/TMS_logo.png" width="35" height="35" class="d-inline-block align-top" alt=""> -->
-              Time Management System
+              Time & Leave Management System
             </a>
       </div>
       <ul class="nav navbar-right">
-        <li><h5 class="navbar-text">{{firstname}}</h5></li>
+        <li><h5 class="navbar-text text-light">{{firstname}}</h5></li>
         <li class="ml-2">
           <div class="navbar-nav ml-auto">
               <a [routerLink]="" (click)="onLogout()" class="nav-item nav-link active" tooltip="Log out" placement="top" show-delay="500">

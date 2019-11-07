@@ -1,15 +1,13 @@
-<div class="card mt-4">
-  <div class="card-header">
-    <div class="">
-      My Planned Leaves
-    </div>
-  </div>
-  <div class="card-body">
+  <h2 class="m-3">
+     Manage Applied Leaves
+    </h2>
+
     <div class="text-center" *ngIf="leavesList.length == 0">
       You don't have any Leaves Planned yet!
     </div>
-    <table class="table leaves-table" *ngIf="leavesList.length > 0">
-      <thead>
+
+    <table class="table" *ngIf="leavesList.length > 0">
+      <thead class="thead-light">
         <tr>
           <th scope="col">Start Date</th>
           <th scope="col">End Date</th>
@@ -36,5 +34,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</div>
+
+

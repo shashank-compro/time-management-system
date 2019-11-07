@@ -1,14 +1,11 @@
-<hr>
+<h2 class="m-3">
+ Previous Time Entries
+</h2>
 <!-- //row table-wrapper -->
-<div class=" ml-4">
-  <div class="card">
-    <div class="card-header">
-      <div>Previous Time entries..</div>
-    </div>
-    <div class="card-body">
-      <table class="table table-responsive-sm time-entries-table">
+
+      <table class="table table-responsive-sm">
         <!-- //heading -->
-        <thead class="">
+        <thead class ="thead-light">
           <tr>
             <th scope="col">Date</th>
             <th scope="col">Time In</th>
@@ -21,7 +18,7 @@
   
         <tbody *ngIf='!updated; else loaderEnded'>
           <tr><td colspan="4">
-              <div class="justify-content-center table-loader">
+              <div class="justify-content-center d-flex">
                   <div class="spinner-border text-primary" role="status"></div>
               </div>
           </td></tr>
@@ -45,7 +42,7 @@
         </tbody>
         </ng-template>
       </table>
-    </div>
-    </div>
+    
+   
 
 

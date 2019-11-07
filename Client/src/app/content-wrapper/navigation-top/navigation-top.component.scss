@@ -1,15 +1,5 @@
 @import '../../../scss/variables';
 
-.header {
-    border-bottom: 1px solid #c8ced3;
-}
-// .navbar{
-//   padding: 0;
-//   padding-right: 2px;
-    
-// }
-
-
 .navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active {
     outline: none;
     box-shadow: none;
@@ -19,11 +9,3 @@
 .navbar-toggler-icon{
     font-size: 0.8em;
 }
-
-@media (max-width:767px) {
- 
-   .tms-text{
-       margin-left: 15px
-   }
-  
-  }
