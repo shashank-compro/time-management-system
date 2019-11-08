@@ -1,20 +1,19 @@
 <div class="header">
   <nav class="navbar sticky-top navbar-expand-lg bg-primary navbar-dark p-0 pr-2 border-bottom">
-    <div class="container-fluid navbar-header">
-  
-      <div class="nav-brand">
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse"
-           (click)="toggleSidebar()">
-            <span class="navbar-toggler-icon">
-            </span></button>
-
-              <a class="navbar-brand text-light">
+    <div class="container navbar-header">
+     <div class="nav-brand">
+        <a class="navbar-brand text-light">
               <!-- <img src="../../../assets/TMS_logo.png" width="35" height="35" class="d-inline-block align-top" alt=""> -->
               Time & Leave Management System
             </a>
       </div>
       <ul class="nav navbar-right">
+
+         <button class="navbar-toggler" type="button" data-toggle="collapse"
+           (click)="toggleSidebar()">
+            <span class="navbar-toggler-icon">
+            </span></button>
+
         <li><h5 class="navbar-text text-light">{{firstname}}</h5></li>
         <li class="ml-2">
           <div class="navbar-nav ml-auto">
