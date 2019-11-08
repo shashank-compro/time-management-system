@@ -23,7 +23,8 @@ export class TimeentriesService {
   };
 
   //POST
-  timeEntriesURL = 'https://comprotms.herokuapp.com/api/v1/timeentries';
+  timeEntriesURL = 'https://immense-retreat-37650.herokuapp.com';
+  //timeEntriesURL = 'https://comprotms.herokuapp.com/api/v1/timeentries';
   //timeEntriesURL = 'http://localhost:3000/api/v1/timeentries';
 
 
