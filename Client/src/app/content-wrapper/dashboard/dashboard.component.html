@@ -1,7 +1,47 @@
-<!-- <div class="col page-wrapper mt-4">
-  <app-timeentries *ngIf="timeEntriesMode==true; else leavesMode"></app-timeentries>
-  <ng-template #leavesMode>
-    <app-leaves></app-leaves>
-  </ng-template>
-</div> -->
-<p>dashb works</p>
+<h1 class="display-4">Dashboard</h1>
+<hr>
+  <div class="container-fluid">
+    <div class="row  mt-5">
+      <div class="col-md-6 border-right" id="rightborder">
+        <div class="d-flex justify-content-center m-5">
+          <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/app/timeentries']">Log Time Entries</button>
+       </div>
+       <div class="col-sm-12"><span class="h3">
+        Upcoming Leaves
+       </span>
+       <a [routerLink]="['/app/leaves']" class="float-right d-inline mt-2">Manage</a>
+      </div>
+       <hr>
+       <div class="text-center" *ngIf="leavesList.length == 0">
+        You don't have any Leaves Planned yet!
+      </div>
+       <ol *ngIf="leavesList.length > 0">
+          <li class="mt-2" *ngFor="let leave of leavesList">
+            <strong>Start date:</strong><span class="ml-2">{{leave.startDate | slice:0:10 | date }}</span> <br>
+            <strong>End Date:</strong><span class="ml-2">{{leave.endDate | slice:0:10 | date }}</span>
+          </li>
+       </ol>
+      </div>
+      <div class="col-md-6 mt-3">
+        <h3 class="m-2">2019 Holiday List</h3>
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Holiday</th>
+                <th scope="col">Date</th>
+                <th scope="col">Day</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let holiday of holidayList">
+                <td>{{holiday.name}}</td>
+                <td>{{holiday.date}}</td>
+                <td>{{holiday.day}}</td>
+              </tr>
+             </tbody>
+        </table>  
+      </div>
+    </div>
+
+  </div>
+

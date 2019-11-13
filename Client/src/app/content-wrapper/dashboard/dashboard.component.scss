@@ -1,3 +1,5 @@
-.page-wrapper {
-    background: #c8ced3;
+@media (max-width:768px) {
+    #rightborder {
+      border-right: none !important;
+    }
 }

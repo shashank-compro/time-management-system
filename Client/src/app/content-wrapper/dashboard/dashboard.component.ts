@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LeavesDataService } from '../leaves/leaves-data.service';
+import { HolidayList } from '../../models/holiday-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,12 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  leavesList;
+  holidayList;
 
-  constructor() { }
-  // Will be changed in future, approach yet to discuss
-  // timeEntriesMode = true;
-  
+  constructor(private leavesDataService: LeavesDataService) { }
+
   ngOnInit() {
+    // this.createForm();
+    this.leavesDataService.getLeaves().subscribe((data) => {
+      this.leavesList = data;  
+    });
+    this.holidayList = HolidayList;
+   
+    
   }
+
+  ngOnChanges() {
+    this.leavesDataService.getLeaves().subscribe((data) => {
+      this.leavesList = data;
+      console.log("In ngonchanges - ",this.leavesList);
+    })
+  }
+
 
 }
