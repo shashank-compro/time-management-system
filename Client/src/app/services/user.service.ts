@@ -20,8 +20,8 @@ export class UserService {
   constructor(private http: HttpClient) { }
   
   addUser(user : User) : Observable<User> {
-    return this.http.post<User>('https://immense-retreat-37650.herokuapp.com/api/v1/users/login',user, httpOptions);
-   // return this.http.post<User>('https://comprotms.herokuapp.com/api/v1/users/login',user, httpOptions);
+    
+    return this.http.post<User>('https://comprotms.herokuapp.com/api/v1/users/login',user, httpOptions);
     //return this.http.post<User>('http://localhost:3000/api/v1/users/login',user, httpOptions);
   }
 
