@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +11,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './navigation-top.component.html',
   styleUrls: ['./navigation-top.component.scss']
 })
+
 export class NavigationTopComponent implements OnInit {
+  @Input() disableToggle;
+  
   faSignOutAlt = faSignOutAlt;
   firstname: string = "";
   

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ContentWrapperComponent implements OnInit {
 
   constructor() { }
-
+  disableToggle:boolean = false;
   ngOnInit() {
   }
 

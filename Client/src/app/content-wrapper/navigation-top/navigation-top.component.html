@@ -1,27 +1,47 @@
 <div class="header">
-  <nav class="navbar sticky-top navbar-expand-lg bg-primary navbar-dark p-0 pr-2 border-bottom">
+  <nav class="navbar sticky-top navbar-expand-lg bg-primary navbar-dark border-bottom">
     <div class="container-fluid navbar-header">
-     <div class="nav-brand">
-        <a class="navbar-brand text-light ml-2">
+     
+        <a class="nav-brand text-light ml-2 text-decoration-none" [routerLink]="['/app/dashboard']">
               <!-- <img src="../../../assets/TMS_logo.png" width="35" height="35" class="d-inline-block align-top" alt=""> -->
               Time & Leave Management System
             </a>
-      </div>
-      <ul class="nav navbar-right">
+        <div class="navbar-nav ml-auto">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+            (click)="toggleSidebar()" *ngIf="!disableToggle">
+             <span class="navbar-toggler-icon">
+             </span></button>
+            </div>
+             <div class="dropdown">
+            <div class="dropdown-toggle text-light" data-toggle="dropdown">{{firstname}}
+  </div>
+  <div class="dropdown-menu dropdown-menu-right m-0 mt-2">
+    <a class="dropdown-item" [routerLink]="['/app/profile']">Profile</a>
+    <a [routerLink]="" (click)="onLogout()" class="dropdown-item" tooltip="Log out" 
+    placement="top" show-delay="500">Log out<fa-icon [icon]="faSignOutAlt" class="ml-2 text-primary"></fa-icon></a>
+  </div>
+
+        </div>
+     
+    </div>
+  </nav>
+</div>
+
+
+
+
+ <!-- <ul class="nav navbar-right">
 
          <button class="navbar-toggler" type="button" data-toggle="collapse"
-           (click)="toggleSidebar()">
+           (click)="toggleSidebar()" *ngIf="!disableToggle">
             <span class="navbar-toggler-icon">
             </span></button>
 
-        <li><h5 class="navbar-text text-light">{{firstname}}</h5></li>
+        <li><a [routerLink]="['/app/profile']" class="navbar-text text-light text-decoration-none">{{firstname}}</a></li>
         <li class="ml-2">
           <div class="navbar-nav ml-auto">
               <a [routerLink]="" (click)="onLogout()" class="nav-item nav-link active" tooltip="Log out" placement="top" show-delay="500">
                 <fa-icon [icon]="faSignOutAlt"></fa-icon></a>
           </div>
         </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+      </ul> -->

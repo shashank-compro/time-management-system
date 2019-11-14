@@ -1,0 +1,33 @@
+<app-navigation-top [disableToggle]="disableToggle"></app-navigation-top>
+<div class="container justify-content-center">
+    <h1 class="display-4 mt-5 ">Profile</h1>
+  <hr>
+  <div class="row mx-lg-5">
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)" class="col-sm-12">
+      <div class="form-group ">
+          <label>First name</label>
+          <input type="text" class="form-control" formControlName="firstname" placeholder="Enter your first name*">
+      </div>  
+      <div class="form-group">  
+          <label for="lastname">Last name</label>
+          <input type="text" class="form-control" formControlName="lastname" placeholder="Enter your last name*">
+      </div>  
+      <div class="form-group">    
+          <label>Email address</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Enter email*">
+      </div>
+  
+      <button [routerLink]="['/app/dashboard']" class="btn btn-primary">Back</button>
+    <button type="submit" [disabled]="!profileForm.dirty || !profileForm.valid" class="btn btn-primary float-right">Save</button>
+ 
+  </form>
+</div>
+<div class="alert alert-success row m-5" role="alert" *ngIf="updated">
+    <fa-icon [icon]="faCheck" class="mr-2"></fa-icon>
+    Your Profile is Updated!
+  </div>
+
+</div>
+
+

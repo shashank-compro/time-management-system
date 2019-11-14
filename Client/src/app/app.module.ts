@@ -23,6 +23,7 @@ import { TimeentriesModalComponent } from './content-wrapper/timeentries/timeent
 import { LeavesFormComponent } from './content-wrapper/leaves/leaves-form/leaves-form.component';
 import { LeavesListComponent } from './content-wrapper/leaves/leaves-list/leaves-list.component';
 import { LeaveModalComponent } from './content-wrapper/leaves/leave-modal/leave-modal.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LeaveModalComponent } from './content-wrapper/leaves/leave-modal/leave-
     TimeentriesModalComponent,
     LeavesFormComponent,
     LeavesListComponent,
-    LeaveModalComponent
+    LeaveModalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

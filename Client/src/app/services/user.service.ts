@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { UserDetails } from '../models/user-details';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,7 +26,12 @@ export class UserService {
     //return this.http.post<User>('http://localhost:3000/api/v1/users/login',user, httpOptions);
   }
 
+  updateUserDetails(userdetails:UserDetails,userId: string): Observable<UserDetails>{
+    return this.http.put<UserDetails>(`http://localhost:3000/api/v1/users/${userId}`,userdetails);
+  }
+
   getUserDetails(userPayload) {
+    
     this.userDetails = userPayload;
     localStorage.setItem('userPayload',JSON.stringify(userPayload));
   }

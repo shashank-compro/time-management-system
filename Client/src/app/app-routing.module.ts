@@ -5,6 +5,7 @@ import { ContentWrapperComponent } from './content-wrapper/content-wrapper.compo
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DashboardComponent } from './content-wrapper/dashboard/dashboard.component';
 import { LeavesComponent } from './content-wrapper/leaves/leaves.component';
+import { ProfileComponent } from './profile/profile.component';
 import { TimeentriesComponent } from './content-wrapper/timeentries/timeentries.component'
 import { AppComponent } from './app.component'
 import { AuthGuard } from './auth.guard';
@@ -31,10 +32,11 @@ const routes: Routes = [
             path: 'leaves',
             component: LeavesComponent,
             canActivate: [AuthGuard]
-          },
+          }
         ],
         canActivate: [AuthGuard]
   },
+  { path: 'app/profile', component: ProfileComponent,canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 
