@@ -2,51 +2,51 @@ export const HolidayList =[
  {
    "name": "New Year",
    "date": "1-Jan",
-   "day": "Tuesday"
+   "day": "Tue"
  },
  {
    "name": "Republic Day",
    "date": "26-Jan",
-   "day": "Saturday"
+   "day": "Sat"
  },
  {
    "name": "Holi",
    "date": "21-Mar",
-   "day": "Thursday"
+   "day": "Thu"
  },
  {
    "name": "Eid-ul-Fitar",
    "date": "5-Jun",
-   "day": "Wednesday"
+   "day": "Wed"
  },
  {
    "name": "Independence Day",
    "date": "15-Aug",
-   "day": "Thursday"
+   "day": "Thu"
  },
  {
    "name": "Mahatma Gandhi Jayanti",
    "date": "2-Oct",
-   "day": "Wednesday"
+   "day": "Wed"
  },
  {
    "name": "Dussehra",
    "date": "8-Oct",
-   "day": "Tuesday"
+   "day": "Tue"
  },
  {
    "name": "Diwali",
    "date": "27-Oct",
-   "day": "Sunday"
+   "day": "Sun"
  },
  {
    "name": "Guru Nanak Jayanti",
    "date": "12-Nov",
-   "day": "Tuesday"
+   "day": "Tue"
  },
  {
    "name": "Christmas",
    "date": "25-Dec",
-   "day": "Wednesday"
+   "day": "Wed"
  }
 ]

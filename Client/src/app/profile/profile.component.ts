@@ -31,13 +31,13 @@ export class ProfileComponent implements OnInit {
         this.userservice.updateUserDetails(data.value,this.getUserPayload().tokenPayload.payload.id)
         .subscribe(()=>{
             this.updated = true;
-            setTimeout( () => { this.updated = false; }, 3000 );
+            setTimeout( () => { this.updated = false; }, 2500 );
         })
 
           var userData = this.getUserPayload();
            userData.tokenPayload.payload.firstname = data.value.firstname; 
            userData.tokenPayload.payload.lastname = data.value.lastname; 
-           userData.tokenPayload.payload.email = data.value.email;   
+           //userData.tokenPayload.payload.email = data.value.email;   
            this.userservice.getUserDetails(userData);   
     }
 

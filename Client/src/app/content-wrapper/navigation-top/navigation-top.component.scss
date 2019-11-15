@@ -1,11 +1,17 @@
 @import '../../../scss/variables';
-
-.navbar-toggler, .navbar-toggler:focus, .navbar-toggler:active {
-    outline: none;
-    box-shadow: none;
-    border: none;
-  }
  
-.navbar-toggler-icon{
-    font-size: 0.8em;
+#toggle_bar{
+    font-size: 18px;
+  }
+#profile_icon{
+  font-size: 18px;
+}
+
+@media (max-width:330px) {
+   #brand_name{
+     font-size: small;
+   }
+}
+.dropdown-menu{
+  min-width: 8rem;
 }

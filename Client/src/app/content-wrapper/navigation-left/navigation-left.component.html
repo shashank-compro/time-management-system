@@ -1,8 +1,8 @@
 <div id="sidebar-wrapper" [ngClass]="{'toggled-open' :toggleSidebar==true, 'toggled-close': toggleSidebar==false }">
-      <nav class="d-block">
+      <nav>
           <ul class="sidebar-nav nav flex-column nav-pills">
             <li class="nav-item">
-              <a class="nav-link d-block text-decoration-none"  [routerLink]="['/app/dashboard']" routerLinkActive="active" >
+              <a class="nav-link text-decoration-none"  [routerLink]="['/app/dashboard']" routerLinkActive="active" >
                 <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
                 Dashboard <span class="sr-only">(current)</span>
               </a>

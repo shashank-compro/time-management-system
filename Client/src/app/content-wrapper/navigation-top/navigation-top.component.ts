@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import { CommonService } from '../../services/common.service';
 import { Subscription } from 'rxjs';
 
@@ -14,8 +15,8 @@ import { Subscription } from 'rxjs';
 
 export class NavigationTopComponent implements OnInit {
   @Input() disableToggle;
-  
-  faSignOutAlt = faSignOutAlt;
+  faBars = faBars
+  faUser = faUserCircle;
   firstname: string = "";
   
   
@@ -39,7 +40,7 @@ export class NavigationTopComponent implements OnInit {
   }
 
   onLogout() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
     this.userService.deleteUser();
   }
 
