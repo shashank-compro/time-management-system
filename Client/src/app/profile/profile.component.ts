@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   profileForm = new FormGroup({
     firstname: new FormControl(this.getUserPayload().tokenPayload.payload.firstname, Validators.required),
     lastname: new FormControl(this.getUserPayload().tokenPayload.payload.lastname,Validators.required),
-    email: new FormControl(this.getUserPayload().tokenPayload.payload.email,[Validators.required, Validators.email]),
+    email: new FormControl({value: this.getUserPayload().tokenPayload.payload.email, disabled: true},[Validators.required, Validators.email]),
   });
 
   onSubmit(data){

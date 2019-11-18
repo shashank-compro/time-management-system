@@ -8,7 +8,7 @@ class usersController {
 
   static async createUser (req, res) {
     const userObj = {
-      username : req.body.username,
+      // username : req.body.username,
       email : req.body.email,
       password : req.body.password,
       firstname : req.body.firstname,
@@ -41,7 +41,7 @@ class usersController {
   static async updateUserById (req, res) {
     let userid = req.params.userid;
     const updateUserObj = {
-      username : req.body.username,
+     // username : req.body.username,
       email : req.body.email,
       password : req.body.password,
       firstname : req.body.firstname,

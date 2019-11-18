@@ -15,7 +15,7 @@ class usersDatalayer {
         bcrypt.hash(userObj.password, saltRounds).then(function(hashPassword) {
             let user = new userModel(
                 {
-                    username: userObj.username,
+                   // username: userObj.username,
                     email: userObj.email,
                     password: hashPassword,
                     firstname: userObj.firstname,
@@ -37,7 +37,7 @@ class usersDatalayer {
     // Update user details based on id
     static updateUserById(userid , updateUserObj) {
         let updatedUser = {
-            username: updateUserObj.username,
+            //username: updateUserObj.username,
             email: updateUserObj.email,
             firstname: updateUserObj.firstname,
             lastname: updateUserObj.lastname
