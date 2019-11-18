@@ -1,3 +1,10 @@
+<div class="d-flex justify-content-center align-items-center w-100 view_height" *ngIf='!timeEntryForm || !timeEntryTable'>
+    <div class="spinner-border text-secondary" id="spinner" role="status"></div>
+  
+</div>
+
+
+<div  [ngClass]="{'d-none': !timeEntryForm || !timeEntryTable}">
 
 <h1 class="h1">Time Entry</h1>
 <hr>
@@ -6,7 +13,6 @@
     <app-timeentries-form></app-timeentries-form>
   </div>
 </div>
-
 <div class="row">
   <div class="col-md-12">
     <app-timeentries-table [todaysEntryObject]='todaysEntryObject'></app-timeentries-table>
@@ -15,7 +21,7 @@
 </div>
 <app-timeentries-modal (todaysEntryObject)="receiveTodaysEntry($event)"></app-timeentries-modal>
         
-    
+</div>
 
 
 

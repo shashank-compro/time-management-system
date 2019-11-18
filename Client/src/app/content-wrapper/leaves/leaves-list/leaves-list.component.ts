@@ -4,6 +4,8 @@ import { LeavesModalService } from '../leaves-modal.service';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
+import { Leave } from '../leave.model';
+import { logging } from 'selenium-webdriver';
 declare var $;
 
 @Component({
@@ -13,7 +15,8 @@ declare var $;
 })
 export class LeavesListComponent implements OnInit, OnChanges {
   leaveUpdateForm: FormGroup;
-  leavesList;
+  leavesList:Leave[];
+  leavelistLength:number;
   faEdit = faEdit;
   faTrash = faTrash;
   // @ViewChild('leaveModal') leaveModal;
@@ -25,14 +28,19 @@ export class LeavesListComponent implements OnInit, OnChanges {
   ngOnInit() {
     // this.createForm();
     this.leavesDataService.getLeaves().subscribe((data) => {
-      this.leavesList = data;
+     // this.leavesList = data[];
+     //this.leavelistResponseList = data.length;
+     this.leavesList = data;
+     this.leavelistLength = data.length;
+      this.leavesDataService.setLeavesLoaded(true);
     });
+
   }
 
   ngOnChanges() {
     this.leavesDataService.getLeaves().subscribe((data) => {
       this.leavesList = data;
-      console.log("In ngonchanges - ",this.leavesList);
+      //console.log("In ngonchanges - ",this.leavesList);
     })
   }
 

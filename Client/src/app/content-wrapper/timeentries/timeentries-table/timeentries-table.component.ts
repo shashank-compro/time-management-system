@@ -38,8 +38,11 @@ export class TimeentriesTableComponent implements OnInit {
       this.timeEntryResponseLength = timeEntries.length;
       //sanitize content to display
       this.timeEntryWithEntryId = this.sanitizeEntries(this.timeEntryWithEntryId);
+      this.updated = true;
       //Loader
-      setTimeout( () => { this.updated = true; }, 1000 );
+      this.timeEntriesService.setTimeEntryTableLoaded(true);
+      
+      //setTimeout( () => { this.updated = true; }, 1000 );
     });
   }
 

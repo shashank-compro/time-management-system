@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { timeEntry } from '../../models/timeentry';
 import { timeEntryWithEntryId } from '../../models/timeentrywithentryid'
 import { HttpClient, HttpHeaders, HttpParams    } from '@angular/common/http';
@@ -9,6 +9,27 @@ import { HttpClient, HttpHeaders, HttpParams    } from '@angular/common/http';
 })
 
 export class TimeentriesService {
+
+
+  private timeEntryloaded = new Subject<boolean>();
+  
+  setTimeEntryLoaded(toggle){
+      this.timeEntryloaded.next(toggle);
+  }
+
+ getTimeEntryLoaded(): Observable<any> {
+   return this.timeEntryloaded.asObservable();
+ }
+
+ private timeEntryTableloaded = new Subject<boolean>();
+  
+ setTimeEntryTableLoaded(toggle){
+     this.timeEntryTableloaded.next(toggle);
+ }
+
+getTimeEntryTableLoaded(): Observable<any> {
+  return this.timeEntryTableloaded.asObservable();
+}
 
   getUserPayload(){
     return  JSON.parse(localStorage.getItem('userPayload')); 

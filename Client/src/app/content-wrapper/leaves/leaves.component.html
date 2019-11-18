@@ -1,3 +1,8 @@
+<div class="d-flex justify-content-center align-items-center w-100 view_height" *ngIf='!updated'>
+        <div class="spinner-border text-secondary" id="spinner" role="status"></div>
+      
+    </div>
+<div  [ngClass]="{'d-none':!updated}">
 <h1 class="h1">Leaves</h1>
 <hr>
 <div class="row">
@@ -13,3 +18,4 @@
     
 
 <app-leave-modal (sendUpdateRequest)="sendUpdateRequest()"></app-leave-modal>
+</div>

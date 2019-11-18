@@ -2,11 +2,11 @@
      Manage Applied Leaves
     </h2>
 
-    <div class="text-center" *ngIf="leavesList.length == 0">
+    <div class="text-center" *ngIf='leavelistLength == 0'>
       You don't have any Leaves Planned yet!
     </div>
 
-    <table class="table" *ngIf="leavesList.length > 0">
+    <table class="table" *ngIf='leavelistLength > 0'>
       <thead class="thead-light">
         <tr>
           <th scope="col">Start Date</th>
@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let leave of leavesList">
+        <tr *ngFor='let leave of leavesList'>
           <td>{{leave.startDate | slice:0:10}}</td>
           <td>{{leave.endDate | slice:0:10}}</td>
           <td>{{leave.reason}}</td>

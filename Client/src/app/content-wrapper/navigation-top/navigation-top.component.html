@@ -1,51 +1,24 @@
 <div class="header">
   <nav class="navbar sticky-top bg-primary navbar-dark border-bottom">
-    <div class="container-fluid px-0 py-0">
-     
+     <div class="container-fluid px-0 py-0">
         <a class="nav-brand text-light text-decoration-none" id="brand_name" [routerLink]="['/app/dashboard']">
-              <!-- <img src="../../../assets/TMS_logo.png" width="35" height="35" class="d-inline-block align-top" alt=""> -->
-              Time & Leave Management System
-            </a>
-           
-                <div class="ml-auto">
-           
-                    <fa-icon [icon]="faBars" id="toggle_bar" class="text-light d-lg-none my-0 mr-3 p-0" (click)="toggleSidebar()" 
-                     *ngIf="!disableToggle"></fa-icon>
-                    </div>
-                   
-                     <div class="dropdown">
-                     
-                    <div class="dropdown-toggle text-light my-0" data-toggle="dropdown">
-                     <fa-icon [icon]="faUser" class="mr-1 float-left text-light" id="profile_icon"></fa-icon>
-                     <span class="d-sm-inline d-none">{{firstname}}</span></div>
-          <div class="dropdown-menu dropdown-menu-right m-0 mt-2 text-center bg-light">
-            <a class="dropdown-item" [routerLink]="['/app/profile']">Profile</a>
-            <a [routerLink]="" (click)="onLogout()" class="dropdown-item">Log out</a>
-          </div>
-        
-                </div>
-              
-          
-  
-    </div>
+           <!-- <img src="../../../assets/TMS_logo.png" width="35" height="35" class="d-inline-block align-top" alt=""> -->
+           Time & Leave Management System
+        </a>
+        <div class="ml-auto">
+           <fa-icon [icon]="faBars" id="toggle_bar" class="text-light d-lg-none my-0 mr-3 p-0" (click)="toggleSidebar()" 
+           *ngIf="!disableToggle"></fa-icon>
+        </div>
+        <div class="dropdown">
+           <div class="dropdown-toggle text-light btn btn-sm p-0 m-0" data-toggle="dropdown">
+              <fa-icon [icon]="faUser" class="mr-1 float-left text-light" id="profile_icon"></fa-icon>
+              <span class="d-sm-inline d-none">{{firstname}}</span>
+           </div>
+           <div class="dropdown-menu dropdown-menu-right m-0 mt-2 text-center bg-light">
+              <a class="dropdown-item" [routerLink]="['/app/profile']">Profile</a>
+              <a [routerLink]="" (click)="onLogout()" class="dropdown-item">Log out</a>
+           </div>
+        </div>
+     </div>
   </nav>
 </div>
-
-
-
-
- <!-- <ul class="nav navbar-right">
-
-         <button class="navbar-toggler" type="button" data-toggle="collapse"
-           (click)="toggleSidebar()" *ngIf="!disableToggle">
-            <span class="navbar-toggler-icon">
-            </span></button>
-
-        <li><a [routerLink]="['/app/profile']" class="navbar-text text-light text-decoration-none">{{firstname}}</a></li>
-        <li class="ml-2">
-          <div class="navbar-nav ml-auto">
-              <a [routerLink]="" (click)="onLogout()" class="nav-item nav-link active" tooltip="Log out" placement="top" show-delay="500">
-                <fa-icon [icon]="faSignOutAlt"></fa-icon></a>
-          </div>
-        </li>
-      </ul> -->

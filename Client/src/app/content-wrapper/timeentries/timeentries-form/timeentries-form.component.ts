@@ -32,10 +32,11 @@ export class TimeentriesFormComponent implements OnInit {
   ngOnInit() {
     //subscribing to todaysentrycheck-HERE
     this.timeentriesModalService.todaysEntryCheckObservable.subscribe((check: string) => {
-
+      this.timeEntriesService.setTimeEntryLoaded(true);
       this.todaysEntryCheck = check;
       //loader
-      setTimeout( () => { this.updated = true; }, 1000 );
+      this.updated = true;
+      //setTimeout( () => { this.updated = true; }, 1000 );
     });
 
   }

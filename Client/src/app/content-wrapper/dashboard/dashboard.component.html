@@ -1,3 +1,8 @@
+<div class="d-flex justify-content-center align-items-center w-100 view_height" *ngIf='!updated'>
+    <div class="spinner-border text-secondary" id="spinner" role="status"></div>
+  
+</div>
+<div  [ngClass]="{'d-none':!updated}">
 <h1 class="h1">Dashboard</h1>
 <hr>
   <div class="container-fluid">
@@ -12,10 +17,10 @@
        <a [routerLink]="['/app/leaves']" class="col-sm-4 text-sm-right mt-2">Manage</a>
       </div>
        <hr>
-       <div class="text-center" *ngIf="leavesList.length == 0">
+       <div class="text-center" *ngIf="leavesListLength == 0">
         You don't have any Leaves Planned yet!
       </div>
-       <ol class="mx-3" *ngIf="leavesList.length > 0">
+       <ol class="mx-3" *ngIf="leavesListLength > 0">
           <li class="mt-2" *ngFor="let leave of leavesList">
             <strong>Start date:</strong><span class="float-right">{{leave.startDate | slice:0:10 | date }}</span> <br>
             <strong>End Date:</strong><span class="float-right">{{leave.endDate | slice:0:10 | date }}</span>
@@ -44,4 +49,4 @@
     </div>
 
   </div>
-
+</div>
