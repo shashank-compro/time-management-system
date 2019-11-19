@@ -1,20 +1,20 @@
-<div id="sidebar-wrapper" [ngClass]="{'toggled-open' :toggleSidebar==true, 'toggled-close': toggleSidebar==false }">
+<div class="d-lg-block d-none" [ngClass]="{'d-block' :toggleSidebar}">
       <nav>
           <ul class="sidebar-nav nav flex-column nav-pills">
             <li class="nav-item">
-              <a class="nav-link text-decoration-none"  [routerLink]="['/app/dashboard']" routerLinkActive="active" >
+              <a class="nav-link text-decoration-none p-2"  [routerLink]="['/app/dashboard']" routerLinkActive="active" >
                 <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
                 Dashboard <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-block text-decoration-none"  [routerLink]="['/app/timeentries']" routerLinkActive="active">
+              <a class="nav-link d-block text-decoration-none p-2"  [routerLink]="['/app/timeentries']" routerLinkActive="active">
                 <fa-icon [icon]="faClock" class="mr-1"></fa-icon>
                 Time Entry
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-block text-decoration-none"  [routerLink]="['/app/leaves']" routerLinkActive="active">
+              <a class="nav-link d-block text-decoration-none p-2"  [routerLink]="['/app/leaves']" routerLinkActive="active">
                 <fa-icon [icon]="faCalendar" class="mr-1"></fa-icon>
                 Leaves
               </a>

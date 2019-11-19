@@ -1,17 +1,15 @@
-@import '../../../scss/variables';
  
 #toggle_bar{
     font-size: 18px;
   }
 #profile_icon{
-  font-size: 18px;
+  font-size: 17px;
 }
-
+.dropdown-menu{
+  min-width: 8rem;
+}
 @media (max-width:330px) {
    #brand_name{
      font-size: small;
    }
-}
-.dropdown-menu{
-  min-width: 8rem;
 }
