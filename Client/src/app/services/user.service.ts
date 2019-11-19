@@ -27,7 +27,7 @@ export class UserService {
   }
 
   updateUserDetails(userdetails:UserDetails,userId: string): Observable<UserDetails>{
-    return this.http.put<UserDetails>(`http://localhost:3000/api/v1/users/${userId}`,userdetails);
+    return this.http.put<UserDetails>(`http://localhost:3000/api/v1/users/${userId}`,userdetails,  httpOptions);
   }
 
   getUserDetails(userPayload) {

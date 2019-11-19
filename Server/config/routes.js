@@ -14,7 +14,7 @@ router.get('/status', authController.protectedRequest);
 router.post('/users/register' , userController.createUser);
 router.post('/users/login', authController.login);
 router.get('/users/:userid', userController.getUserById);
-router.put('/users/:userid', userController.updateUserById);
+router.put('/users/:userid',[authController.protectedRequest], userController.updateUserById);
 router.delete('/users/:userid' , userController.deleteUserById);
 
 //timeentry api routes
