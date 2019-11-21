@@ -19,6 +19,7 @@ export class TimeentriesTableComponent implements OnInit {
   constructor(private timeEntriesService: TimeentriesService, private timeentriesModalService: TimeentriesModalService) {}
   entry: timeEntry;
   timeEntryWithEntryId: timeEntryWithEntryId[];
+  previousEntries:timeEntryWithEntryId[];
   timeEntryResponseLength: number;
   faEdit = faEdit;
   timeEntryUpdateForm: FormGroup;
@@ -35,9 +36,18 @@ export class TimeentriesTableComponent implements OnInit {
       
       this.timeEntryWithEntryId = timeEntries;
       //to be used in html
-      this.timeEntryResponseLength = timeEntries.length;
+      //this.timeEntryResponseLength = timeEntries.length;
       //sanitize content to display
       this.timeEntryWithEntryId = this.sanitizeEntries(this.timeEntryWithEntryId);
+
+      this.previousEntries = this.timeEntryWithEntryId.filter((entry)=>{return entry.date !=  new Date().toDateString()})
+      
+      this.timeEntryResponseLength = this.previousEntries.length;
+      if(this.getTodaysEntryCheck(timeEntries)){
+        this.timeEntriesService.setTodaysEntry(this.timeEntryWithEntryId[0]);
+      }
+      
+      
       this.updated = true;
       //Loader
       this.timeEntriesService.setTimeEntryTableLoaded(true);
@@ -64,6 +74,12 @@ export class TimeentriesTableComponent implements OnInit {
 
       //santize the entries to display
       this.timeEntryWithEntryId = this.sanitizeEntries(this.timeEntryWithEntryId);
+
+      if(this.getTodaysEntryCheck(timeEntries)){
+        this.timeEntriesService.setTodaysEntry(this.timeEntryWithEntryId[0]);
+  
+        
+      }
 
     });
   }

@@ -3,14 +3,15 @@
      <div class="container-fluid px-0 py-0">
         <a class="nav-brand text-light text-decoration-none" id="brand_name" [routerLink]="['/app/dashboard']">
            <!-- <img src="../../../assets/TMS_logo.png" width="35" height="35" class="d-inline-block align-top" alt=""> -->
-           Time & Leave Management System
+           <img src="../../assets/compro.png" class="img-fluid">
+           <!-- <h6 class="m-0">comproTMS</h6> -->
         </a>
         <div class="ml-auto">
            <fa-icon [icon]="faBars" id="toggle_bar" class="text-light d-lg-none my-0 mr-3 p-0" (click)="toggleSidebar()" 
            *ngIf="!disableToggle"></fa-icon>
         </div>
         <div class="dropdown">
-           <div class="dropdown-toggle text-light btn btn-sm p-0 m-0" data-toggle="dropdown">
+           <div class="dropdown-toggle text-light btn p-0 m-0" data-toggle="dropdown">
               <fa-icon [icon]="faUser" class="mr-1 float-left text-light" id="profile_icon"></fa-icon>
               <span class="d-sm-inline d-none">{{firstname}}</span>
            </div>

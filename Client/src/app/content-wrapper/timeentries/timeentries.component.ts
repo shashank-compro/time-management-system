@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { timeEntryWithEntryId } from '../../models/timeentrywithentryid'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { TimeentriesService } from '../../services/timeentries/timeentries.service';
+import { TimeentriesModalService } from './timeentries-modal.service';
 
 @Component({
   selector: 'app-timeentries',
@@ -11,14 +12,25 @@ import { TimeentriesService } from '../../services/timeentries/timeentries.servi
 export class TimeentriesComponent implements OnInit {
   [x: string]: any;
 
-  constructor(private timeentryservice : TimeentriesService) { }
+  constructor(private timeentryservice : TimeentriesService, private timeentriesModalService: TimeentriesModalService) {}
   timeEntryForm:boolean;
   timeEntryTable:boolean;
+  timeEntryWithEntryId: timeEntryWithEntryId[];
+  todaysEntry :any[];
+  todaysEntryCheck:boolean;
   updated:boolean
   faCoffee = faCoffee;
   ngOnInit() {
+    this.subscription = this.timeentryservice.getTodaysEntry().subscribe(
+      value => {
+       this.todaysEntry = value;});
+ 
+
+    this.timeentriesModalService.todaysEntryCheckObservable.subscribe((check: boolean) => {
+      this.todaysEntryCheck = check; 
+    });
+
     
-    //setTimeout( () => { this.timeEntryForm = true; }, 1000 );
     this.subscription = this.timeentryservice.getTimeEntryLoaded().subscribe(
         value => {
          this.timeEntryForm = value;
@@ -38,6 +50,7 @@ export class TimeentriesComponent implements OnInit {
 
    
   }
+
   
   todaysEntryObject: any;
 

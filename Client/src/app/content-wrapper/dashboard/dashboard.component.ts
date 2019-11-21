@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
   ngOnChanges() {
     this.leavesDataService.getLeaves().subscribe((data) => {
       this.leavesList = data;
-      console.log("In ngonchanges - ",this.leavesList);
     })
   }
 

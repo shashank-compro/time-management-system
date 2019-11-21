@@ -11,6 +11,16 @@ import { HttpClient, HttpHeaders, HttpParams    } from '@angular/common/http';
 export class TimeentriesService {
 
 
+  private todaysEntry = new Subject<boolean>();
+  
+  setTodaysEntry(data){
+      this.todaysEntry.next(data);
+  }
+
+ getTodaysEntry(): Observable<any> {
+   return this.todaysEntry.asObservable();
+ }
+
   private timeEntryloaded = new Subject<boolean>();
   
   setTimeEntryLoaded(toggle){

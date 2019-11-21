@@ -1,7 +1,18 @@
 @import '../../scss/variables';
 
-.login-div {
-  background-color: $tms-background;
+.bg-image{
+ // #00c6ff, #0072ff
+  background-image:
+  linear-gradient(to bottom, rgba(25, 133, 172,1), rgba(24, 40, 72,0.5)),
+  url('../../assets/tms-background.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: scroll;
+background-size: cover;
+ }
+
+.login-div{
   min-height: 100vh;
 }
 .login-button {

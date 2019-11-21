@@ -26,7 +26,7 @@ export class LeaveModalComponent implements OnInit {
   constructor(private leavesModalService: LeavesModalService, private leavesDataService: LeavesDataService) { }
 
   ngOnInit() {
-    console.log("ngoninit");
+
     this.leavesModalService.mode.subscribe((val) => {
       if (val == 'edit') {
         this.title = "Edit Application Form";

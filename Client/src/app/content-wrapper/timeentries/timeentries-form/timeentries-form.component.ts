@@ -24,27 +24,31 @@ export class TimeentriesFormComponent implements OnInit {
   timeEntry: timeEntry;
   submitted: boolean = false;
   timeEntryWithEntryId: timeEntryWithEntryId[];
-  todaysEntryCheck: string;
+  todaysEntryCheck: boolean;
   updated: boolean= false;
+  subscription: any;
 
-  constructor(private timeEntriesService: TimeentriesService, private timeentriesModalService: TimeentriesModalService) {}
+  constructor(private timeEntriesService: TimeentriesService, private timeentriesModalService: TimeentriesModalService, private timeentryservice: TimeentriesService) {}
 
   ngOnInit() {
     //subscribing to todaysentrycheck-HERE
-    this.timeentriesModalService.todaysEntryCheckObservable.subscribe((check: string) => {
+    this.timeentriesModalService.todaysEntryCheckObservable.subscribe((check: boolean) => {
       this.timeEntriesService.setTimeEntryLoaded(true);
       this.todaysEntryCheck = check;
       //loader
       this.updated = true;
       //setTimeout( () => { this.updated = true; }, 1000 );
     });
+    this.subscription = this.timeentryservice.getTodaysEntry().subscribe(
+      value => {
+       this.timeEntry = value;});
 
   }
 
   formatTimeEntry(entryFormGroupObject) {
 
     var dateToday = moment(new Date()).format('YYYY/MM/DD');
-    console.log(dateToday)
+    
     var userPayloadID = this.getUserPayload().tokenPayload.payload.id;
     return {
       userId : userPayloadID,
@@ -71,8 +75,17 @@ setDefaultModal () {
     this.submitted = false;
   } 
 
-  setTimeEntriesMode(mode) {
-      this.timeentriesModalService.setTimeEntriesMode(mode);
+  // setTimeEntriesMode(mode) {
+  //     this.timeentriesModalService.setTimeEntriesMode(mode);
+  //   }
+
+  setTimeEntriesMode(mode, timeEntry) {
+     this.timeentriesModalService.setTimeEntriesMode(mode);
+     if(timeEntry){
+      this.timeentriesModalService.prefillEditForm(timeEntry);
+      this.timeentriesModalService.setTimeEntryId(timeEntry._id);
+     }
+     
     }
   }
 

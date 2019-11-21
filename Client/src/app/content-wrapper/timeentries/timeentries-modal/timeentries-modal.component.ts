@@ -140,7 +140,7 @@ return  JSON.parse(localStorage.getItem('userPayload'));
 formatNewTimeEntry(entryFormGroupObject) {
 
   var dateToday = moment(new Date()).format('YYYY/MM/DD');
-  console.log(dateToday)
+  
   var userPayloadID = this.getUserPayload().tokenPayload.payload.id;
 
   

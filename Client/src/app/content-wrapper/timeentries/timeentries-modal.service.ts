@@ -10,7 +10,7 @@ export class TimeentriesModalService {
   timeEntryId: string;
   public timeEntriesModeObservable = new Subject<string>();
   public prefillFormObservable = new Subject<string>();
-  public todaysEntryCheckObservable = new Subject<string>();
+  public todaysEntryCheckObservable = new Subject<boolean>();
   constructor() { }
 
   setTimeEntriesMode(mode) {

@@ -1,12 +1,16 @@
-<div class="text-center m-3">
+<div class="d-flex justify-content-center h-100">
   <div class="justify-content-center table-loader" *ngIf='!updated; else loaderEnded'>
       <div class="spinner-border text-primary" role="status"></div>
 </div>
     <ng-template #loaderEnded>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" [disabled]='todaysEntryCheck'
+      <button type="button" class="btn btn-primary btn-lg align-self-center" data-toggle="modal" *ngIf="!todaysEntryCheck"
         (click)='setTimeEntriesMode("new-entry")'>
         Add Today’s Entry
       </button>
+      <button type="button" class="btn btn-primary btn-lg align-self-center" data-toggle="modal" *ngIf="todaysEntryCheck"
+      (click)="setTimeEntriesMode('update-entry', timeEntry)">
+      Update Today's Entry
+    </button>
     </ng-template>
   </div>
 

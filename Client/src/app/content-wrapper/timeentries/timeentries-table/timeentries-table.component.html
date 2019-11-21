@@ -1,6 +1,6 @@
-<h2 class="m-3">
+<h3 class="m-3">
  Previous Time Entries
-</h2>
+</h3>
 <!-- //row table-wrapper -->
 
       <table class="table table-responsive-sm">
@@ -9,9 +9,8 @@
           <tr>
             <th scope="col">Date</th>
             <th scope="col">Time In</th>
-            <th scope="col">TIme Out</th>    
+            <th scope="col">Time Out</th>    
             <th scope="col">On Leave</th>       
-            <th scope="col">Edit</th>     
           </tr>
   
         </thead>
@@ -27,16 +26,16 @@
         <tbody>
           <tr *ngIf="!timeEntryResponseLength; else elseBlock"> No data to display.</tr>
           <ng-template #elseBlock>
-            <tr *ngFor="let timeEntry of timeEntryWithEntryId">
+            <tr *ngFor="let timeEntry of previousEntries">
             <td>{{timeEntry.date}}</td>
             <td>{{timeEntry.timeIn}}</td>
             <td>{{timeEntry.timeOut}}</td>
             <td *ngIf = 'timeEntry.onLeave; else notOnLeaveBlock'>Yes</td>
             <ng-template #notOnLeaveBlock><td>No</td></ng-template>
-            <td>
+            <!-- <td>
               <button *ngIf='timeEntry.isToday' type="button" class="btn p-0" data-toggle="modal" (click)="setTimeEntriesMode('update-entry', timeEntry)">
                 <fa-icon class="text-warning" [icon]="faEdit"></fa-icon>
-              </button></td>
+              </button></td> -->
           </tr>
           </ng-template>
         </tbody>

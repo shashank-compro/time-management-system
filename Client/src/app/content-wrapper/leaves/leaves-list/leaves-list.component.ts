@@ -113,7 +113,7 @@ export class LeavesListComponent implements OnInit, OnChanges {
   // }
 
   launchModal (leave) {
-    console.log('here2',leave);
+   
     this.leavesModalService.emitNewSubmittedStatus(false);
     this.leavesModalService.emitEditSubmittedStatus(false);
     this.leavesModalService.emitDeleteSubmittedStatus(false);
@@ -127,7 +127,7 @@ export class LeavesListComponent implements OnInit, OnChanges {
   }
 
   launchDeleteModal (leaveId) {
-    console.log('here3');
+    
     this.leavesModalService.emitNewSubmittedStatus(false);
     this.leavesModalService.emitEditSubmittedStatus(false);
     this.leavesModalService.emitDeleteSubmittedStatus(false);
