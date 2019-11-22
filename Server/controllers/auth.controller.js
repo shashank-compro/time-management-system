@@ -2,6 +2,7 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const dbConfig = require('../config/default');
+
 /**
  * Class representing auth controller
  *

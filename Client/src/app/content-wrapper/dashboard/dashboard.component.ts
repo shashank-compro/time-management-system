@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   constructor(private leavesDataService: LeavesDataService) { }
 
   ngOnInit() {
-    // this.createForm();
+
     this.leavesDataService.getLeaves().subscribe((data) => {
       this.leavesList = data;
       this.leavesListLength = data.length; 

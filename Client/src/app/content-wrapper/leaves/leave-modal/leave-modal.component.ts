@@ -123,7 +123,7 @@ export class LeaveModalComponent implements OnInit {
         this.leavesDataService.updateLeave(leave, this.leavesModalService.getLeaveIdToEdit()).subscribe(
           () => {
             setTimeout( () => { this.updated = true; }, 1000 );
-            // this.saved = true;
+      
             this.sendUpdateRequest.emit();
           },
           (err) => console.log(err),
@@ -135,7 +135,7 @@ export class LeaveModalComponent implements OnInit {
         this.leavesDataService.deleteLeave(this.leavesModalService.getLeaveIdToEdit()).subscribe(
           () => {
             setTimeout( () => { this.deleted = true; }, 1000 );
-            // this.saved = true;
+    
             this.sendUpdateRequest.emit();
           },
           (err) => console.log(err),
