@@ -21,6 +21,16 @@ const corsOptionsDelegate = function (req, callback) {
 
 const app = express();
 
+app.use (function (req, res, next) {
+  if (req.secure) {
+          // request was via https, so do no special handling
+          next();
+  } else {
+          // request was via http, so redirect to https
+          res.redirect('https://' + req.headers.host + req.url);
+  }
+});
+
 
 app.use(express.static(path.join(__dirname,'../Client/dist')));
 
@@ -36,16 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   }
 //   next();
 // })
-app.all (function (req, res, next) {
-  if (req.secure) {
-          // request was via https, so do no special handling
-          next();
-  } else {
-          // request was via http, so redirect to https
-          res.redirect('https://' + req.headers.host + req.url);
-          next();
-  }
-});
+
 
 
 app.use('/api/v1', routes);
