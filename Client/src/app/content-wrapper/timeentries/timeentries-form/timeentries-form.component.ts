@@ -37,7 +37,7 @@ export class TimeentriesFormComponent implements OnInit {
       this.todaysEntryCheck = check;
       //loader
       this.updated = true;
-      //setTimeout( () => { this.updated = true; }, 1000 );
+     
     });
     this.subscription = this.timeentryservice.getTodaysEntry().subscribe(
       value => {
@@ -75,9 +75,6 @@ setDefaultModal () {
     this.submitted = false;
   } 
 
-  // setTimeEntriesMode(mode) {
-  //     this.timeentriesModalService.setTimeEntriesMode(mode);
-  //   }
 
   setTimeEntriesMode(mode, timeEntry) {
      this.timeentriesModalService.setTimeEntriesMode(mode);

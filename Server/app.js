@@ -6,66 +6,58 @@ const routes = require('./config/routes');
 const path = require('path');
 var cors = require('cors');
 
-const port = process.env.PORT || process.env.VCAP_APP_PORT  ||  3000;
+const port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
 
 const whitelist = config.mongo.allowedCORSDomains;
 const corsOptionsDelegate = function (req, callback) {
-  let corsOptions;
-  if (whitelist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true }
-  } else {
-    corsOptions = { origin: false }
-  }
-  callback(null, corsOptions)
+	let corsOptions;
+	if (whitelist.indexOf(req.header('Origin')) !== -1) {
+		corsOptions = {
+			origin: true
+		}
+	} else {
+		corsOptions = {
+			origin: false
+		}
+	}
+	callback(null, corsOptions)
 }
 
 const app = express();
 app.enable('trust proxy');
-app.use (function (req, res, next) {
-  if (req.secure) {
-          // request was via https, so do no special handling
-          next();
-  } else {
-          // request was via http, so redirect to https
-          res.redirect('https://' + req.headers.host + req.url);
-  }
+app.use(function (req, res, next) {
+	if (req.secure) {
+
+		next();
+	} else {
+
+		res.redirect('https://' + req.headers.host + req.url);
+	}
 });
 
 
-app.use(express.static(path.join(__dirname,'../Client/dist')));
+app.use(express.static(path.join(__dirname, '../Client/dist')));
 
 
-
-app.use(bodyParser.json({limit: '1mb'}));
+app.use(bodyParser.json({
+	limit: '1mb'
+}));
 app.use(cors(corsOptionsDelegate));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.get('/',(req,res,next)=>{
-//   if(!req.secure){
-//     res.redirect("https://" + req.headers.host + req.url);
-//   }
-//   next();
-// })
-
 
 
 app.use('/api/v1', routes);
 
 
+app.get('*', (req, res) => {
 
-app.get('*',(req, res)=>{
-  // if(!req.secure){
-  //   res.redirect("https://" + req.headers.host + req.url);
-  //   res.sendFile(path.join(__dirname, '../Client/dist/index.html'))
-  // }
-  // else
-  res.sendFile(path.join(__dirname, '../Client/dist/index.html'))
-  
+	res.sendFile(path.join(__dirname, '../Client/dist/index.html'))
+
 })
 
 DataLayerFactory.initMongoDataLayer().then(() => {
-    console.log(`API Server listening on port ${port}`);
-    app.listen(port);
+	console.log(`API Server listening on port ${port}`);
+	app.listen(port);
 });
 
 module.exports = app;

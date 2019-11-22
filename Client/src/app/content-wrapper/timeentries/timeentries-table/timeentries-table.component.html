@@ -32,10 +32,6 @@
             <td>{{timeEntry.timeOut}}</td>
             <td *ngIf = 'timeEntry.onLeave; else notOnLeaveBlock'>Yes</td>
             <ng-template #notOnLeaveBlock><td>No</td></ng-template>
-            <!-- <td>
-              <button *ngIf='timeEntry.isToday' type="button" class="btn p-0" data-toggle="modal" (click)="setTimeEntriesMode('update-entry', timeEntry)">
-                <fa-icon class="text-warning" [icon]="faEdit"></fa-icon>
-              </button></td> -->
           </tr>
           </ng-template>
         </tbody>

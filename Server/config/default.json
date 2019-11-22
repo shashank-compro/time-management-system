@@ -5,7 +5,7 @@
         "password": "dbpassword1",
         "database": "TMS",
         "port": 27017,
-        "allowedCORSDomains": ["https://comprotms.herokuapp.com","http://localhost:3000","http://localhost:4200"],
+        "allowedCORSDomains": ["https://comprotms.herokuapp.com","http://localhost:3000","http://localhost:4200","http://comprotms.herokuapp.com"],
         "connectionString": "cluster0-shard-00-00-jt05i.mongodb.net:27017,cluster0-shard-00-01-jt05i.mongodb.net:27017,cluster0-shard-00-02-jt05i.mongodb.net:27017/TMS?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
     },
     "passport" : {

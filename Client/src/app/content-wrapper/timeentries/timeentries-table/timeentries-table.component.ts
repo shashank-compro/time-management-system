@@ -52,7 +52,7 @@ export class TimeentriesTableComponent implements OnInit {
       //Loader
       this.timeEntriesService.setTimeEntryTableLoaded(true);
       
-      //setTimeout( () => { this.updated = true; }, 1000 );
+     
     });
   }
 

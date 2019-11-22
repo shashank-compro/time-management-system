@@ -23,7 +23,7 @@ export class UserService {
   addUser(user : User) : Observable<User> {
     
     return this.http.post<User>('https://comprotms.herokuapp.com/api/v1/users/login',user, httpOptions);
-    //return this.http.post<User>('http://localhost:3000/api/v1/users/login',user, httpOptions);
+   
   }
 
   updateUserDetails(userdetails:UserDetails,userId: string): Observable<UserDetails>{
@@ -43,8 +43,7 @@ export class UserService {
       var userToken = JSON.parse(localStorage.getItem('userPayload'));
        return userToken.tokenPayload.payload.firstname;
     }
-    // var userToken = JSON.parse(localStorage.getItem('userPayload'));
-    // return userToken.tokenPayload.payload.firstname;
+    
   }
 
   isLoggedIn() {

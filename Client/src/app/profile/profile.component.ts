@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
           var userData = this.getUserPayload();
            userData.tokenPayload.payload.firstname = data.value.firstname; 
            userData.tokenPayload.payload.lastname = data.value.lastname; 
-           //userData.tokenPayload.payload.email = data.value.email;   
            this.userservice.getUserDetails(userData);   
     }
 

@@ -7,8 +7,8 @@ const timeEntriesController = require('../controllers/time-entry.controller');
 const userController = require('../controllers/user.controller');
 const authController = require('../controllers/auth.controller');
 
-// api routes
-router.get('/status', authController.protectedRequest);
+// api route
+router.get('/status',statusController.checkStatus);
 
 // auth api routes
 router.post('/users/register' , userController.createUser);

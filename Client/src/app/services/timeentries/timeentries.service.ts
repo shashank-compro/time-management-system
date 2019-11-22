@@ -56,7 +56,7 @@ getTimeEntryTableLoaded(): Observable<any> {
   //POST
   
   timeEntriesURL = 'https://comprotms.herokuapp.com/api/v1/timeentries';
-  //timeEntriesURL = 'http://localhost:3000/api/v1/timeentries';
+
 
 
   createTimeEntry(timeEntry: timeEntry): Observable<timeEntryWithEntryId> {
