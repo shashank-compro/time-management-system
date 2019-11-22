@@ -38,17 +38,11 @@ export class TimeentriesComponent implements OnInit {
     this.subscription = this.timeentryservice.getTimeEntryTableLoaded().subscribe(
       value => {
         setTimeout( () => { this.timeEntryTable = value; }, 250 );
-         // this.timeEntryTable = value;
+        
           });    
   }
   ngAfterViewInit(){
-    // setTimeout( () => { this.timeEntryForm = true; }, 1000 );
-    // this.subscription = this.timeentryservice.getTimeEntryLoaded().subscribe(
-    //   value => {
-    //    this.timeEntryForm = value;
-    //   });
-
-   
+ 
   }
 
   

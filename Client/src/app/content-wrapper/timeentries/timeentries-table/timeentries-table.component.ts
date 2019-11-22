@@ -35,9 +35,7 @@ export class TimeentriesTableComponent implements OnInit {
     this.timeEntriesService.getTimeEntries().subscribe((timeEntries) => {
       
       this.timeEntryWithEntryId = timeEntries;
-      //to be used in html
-      //this.timeEntryResponseLength = timeEntries.length;
-      //sanitize content to display
+    
       this.timeEntryWithEntryId = this.sanitizeEntries(this.timeEntryWithEntryId);
 
       this.previousEntries = this.timeEntryWithEntryId.filter((entry)=>{return entry.date !=  new Date().toDateString()})
@@ -51,8 +49,7 @@ export class TimeentriesTableComponent implements OnInit {
       this.updated = true;
       //Loader
       this.timeEntriesService.setTimeEntryTableLoaded(true);
-      
-      //setTimeout( () => { this.updated = true; }, 1000 );
+    
     });
   }
 
