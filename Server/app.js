@@ -6,7 +6,7 @@ const routes = require('./config/routes');
 const path = require('path');
 var cors = require('cors');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || process.env.VCAP_APP_PORT  ||  3000;
 
 const whitelist = config.mongo.allowedCORSDomains;
 const corsOptionsDelegate = function (req, callback) {
@@ -20,7 +20,7 @@ const corsOptionsDelegate = function (req, callback) {
 }
 
 const app = express();
-
+app.enable('trust proxy');
 app.use (function (req, res, next) {
   if (req.secure) {
           // request was via https, so do no special handling
