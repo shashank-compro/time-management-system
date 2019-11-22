@@ -21,6 +21,7 @@ const corsOptionsDelegate = function (req, callback) {
 
 const app = express();
 
+
 app.use(express.static(path.join(__dirname,'../Client/dist')));
 
 
@@ -29,14 +30,25 @@ app.use(bodyParser.json({limit: '1mb'}));
 app.use(cors(corsOptionsDelegate));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/',(req,res,next)=>{
+  if(!req.secure){
+    res.redirect("https://" + req.headers.host + req.url);
+  }
+  next();
+})
+
 app.use('/api/v1', routes);
-// app.use('/', (req, res)=>{
-//   res.sendFile('index.html', { root: path.join(__dirname, 'public') })
-// });
+
 
 
 app.get('*',(req, res)=>{
+  if(!req.secure){
+    res.redirect("https://" + req.headers.host + req.url);
+    res.sendFile(path.join(__dirname, '../Client/dist/index.html'))
+  }
+  else
   res.sendFile(path.join(__dirname, '../Client/dist/index.html'))
+  
 })
 
 DataLayerFactory.initMongoDataLayer().then(() => {

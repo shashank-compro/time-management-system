@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm install -only=dev && ng build --prod",
-    "build": "ng build ",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
