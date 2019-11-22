@@ -30,12 +30,12 @@ app.use(bodyParser.json({limit: '1mb'}));
 app.use(cors(corsOptionsDelegate));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/',(req,res,next)=>{
-  if(!req.secure){
-    res.redirect("https://" + req.headers.host + req.url);
-  }
-  next();
-})
+// app.get('/',(req,res,next)=>{
+//   if(!req.secure){
+//     res.redirect("https://" + req.headers.host + req.url);
+//   }
+//   next();
+// })
 
 app.use('/api/v1', routes);
 
